@@ -1,0 +1,3 @@
+/home/harshit/code/url-ftp-server/build/CMakeFiles/URLShortner.dir
+/home/harshit/code/url-ftp-server/build/CMakeFiles/edit_cache.dir
+/home/harshit/code/url-ftp-server/build/CMakeFiles/rebuild_cache.dir
