@@ -1,7 +1,6 @@
 CMakeFiles/URLShortner.dir/src/main.cpp.o: \
- /home/harshit/code/url-ftp-server/src/main.cpp \
- /usr/include/stdc-predef.h /usr/include/c++/14/iostream \
- /usr/include/c++/14/bits/requires_hosted.h \
+ /home/harshit/code/ftp-server/src/main.cpp /usr/include/stdc-predef.h \
+ /usr/include/c++/14/iostream /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/bits/wordsize.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/os_defines.h \
@@ -153,7 +152,7 @@ CMakeFiles/URLShortner.dir/src/main.cpp.o: \
  /usr/include/c++/14/bits/unicode-data.h \
  /usr/include/c++/14/bits/ostream.tcc /usr/include/c++/14/istream \
  /usr/include/c++/14/bits/istream.tcc \
- /home/harshit/code/url-ftp-server/include/server.h \
+ /home/harshit/code/ftp-server/include/server.h \
  /usr/include/c++/14/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
  /usr/include/bits/environments.h /usr/include/bits/confname.h \
@@ -195,7 +194,7 @@ CMakeFiles/URLShortner.dir/src/main.cpp.o: \
  /usr/include/bits/sigstack.h /usr/include/bits/sigstksz.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
  /usr/include/bits/sigthread.h /usr/include/bits/signal_ext.h \
- /home/harshit/code/url-ftp-server/include/threadpool.h \
+ /home/harshit/code/ftp-server/include/threadpool.h \
  /usr/include/c++/14/vector /usr/include/c++/14/bits/stl_uninitialized.h \
  /usr/include/c++/14/bits/stl_vector.h \
  /usr/include/c++/14/bits/stl_bvector.h \

@@ -18,11 +18,13 @@ include_directories(${INCLUDE_DIR})
 set(SOURCES
     ${SRC_DIR}/server.cpp
     ${SRC_DIR}/main.cpp
-    ${SRC_DIR}/threadpool.cpp
+    ${SRC_DIR}/thread_pool.cpp
+    ${SRC_DIR}/database.cpp
+    ${SRC_DIR}/connection_pool.cpp
 )
 
 # Add the executable
-add_executable(URLShortner ${SOURCES})
+add_executable(ftp ${SOURCES})
 
 # Set output directory
 set_target_properties(URLShortner PROPERTIES

@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/harshit/code/url-ftp-server/src/main.cpp" "CMakeFiles/URLShortner.dir/src/main.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/main.cpp.o.d"
-  "/home/harshit/code/url-ftp-server/src/server.cpp" "CMakeFiles/URLShortner.dir/src/server.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/server.cpp.o.d"
-  "/home/harshit/code/url-ftp-server/src/threadpool.cpp" "CMakeFiles/URLShortner.dir/src/threadpool.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/threadpool.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/main.cpp" "CMakeFiles/URLShortner.dir/src/main.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/main.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/server.cpp" "CMakeFiles/URLShortner.dir/src/server.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/server.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/threadpool.cpp" "CMakeFiles/URLShortner.dir/src/threadpool.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/threadpool.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
