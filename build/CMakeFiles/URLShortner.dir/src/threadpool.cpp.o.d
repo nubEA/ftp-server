@@ -1,7 +1,7 @@
 CMakeFiles/URLShortner.dir/src/threadpool.cpp.o: \
- /home/harshit/code/url-ftp-server/src/threadpool.cpp \
+ /home/harshit/code/ftp-server/src/threadpool.cpp \
  /usr/include/stdc-predef.h \
- /home/harshit/code/url-ftp-server/include/threadpool.h \
+ /home/harshit/code/ftp-server/include/threadpool.h \
  /usr/include/c++/14/vector /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/bits/wordsize.h \
