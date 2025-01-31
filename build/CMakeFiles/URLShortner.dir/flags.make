@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/harshit/code/ftp-server/include
 
-CXX_FLAGS = -std=gnu++23 -Wall -Wextra -pedantic
+CXX_FLAGS = -std=gnu++20 -Wall -Wextra -pedantic
 

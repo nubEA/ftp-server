@@ -102,6 +102,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
   "/usr/share/cmake/Modules/FindPackageMessage.cmake"
   "/usr/share/cmake/Modules/FindPkgConfig.cmake"
+  "/usr/share/cmake/Modules/FindPostgreSQL.cmake"
   "/usr/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake"
   "/usr/share/cmake/Modules/Internal/FeatureTesting.cmake"
   "/usr/share/cmake/Modules/Platform/Linux-Determine-CXX.cmake"
@@ -111,6 +112,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/Platform/Linux-Initialize.cmake"
   "/usr/share/cmake/Modules/Platform/Linux.cmake"
   "/usr/share/cmake/Modules/Platform/UnixPaths.cmake"
+  "/usr/share/cmake/Modules/SelectLibraryConfigurations.cmake"
   )
 
 # The corresponding makefile is:

@@ -129,6 +129,54 @@ URLShortner/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/build
 .PHONY : URLShortner/fast
 
+src/connection_pool.o: src/connection_pool.cpp.o
+.PHONY : src/connection_pool.o
+
+# target to build an object file
+src/connection_pool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/connection_pool.cpp.o
+.PHONY : src/connection_pool.cpp.o
+
+src/connection_pool.i: src/connection_pool.cpp.i
+.PHONY : src/connection_pool.i
+
+# target to preprocess a source file
+src/connection_pool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/connection_pool.cpp.i
+.PHONY : src/connection_pool.cpp.i
+
+src/connection_pool.s: src/connection_pool.cpp.s
+.PHONY : src/connection_pool.s
+
+# target to generate assembly for a file
+src/connection_pool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/connection_pool.cpp.s
+.PHONY : src/connection_pool.cpp.s
+
+src/database.o: src/database.cpp.o
+.PHONY : src/database.o
+
+# target to build an object file
+src/database.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/database.cpp.o
+.PHONY : src/database.cpp.o
+
+src/database.i: src/database.cpp.i
+.PHONY : src/database.i
+
+# target to preprocess a source file
+src/database.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/database.cpp.i
+.PHONY : src/database.cpp.i
+
+src/database.s: src/database.cpp.s
+.PHONY : src/database.s
+
+# target to generate assembly for a file
+src/database.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/database.cpp.s
+.PHONY : src/database.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -177,29 +225,29 @@ src/server.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/server.cpp.s
 .PHONY : src/server.cpp.s
 
-src/threadpool.o: src/threadpool.cpp.o
-.PHONY : src/threadpool.o
+src/thread_pool.o: src/thread_pool.cpp.o
+.PHONY : src/thread_pool.o
 
 # target to build an object file
-src/threadpool.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/threadpool.cpp.o
-.PHONY : src/threadpool.cpp.o
+src/thread_pool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/thread_pool.cpp.o
+.PHONY : src/thread_pool.cpp.o
 
-src/threadpool.i: src/threadpool.cpp.i
-.PHONY : src/threadpool.i
+src/thread_pool.i: src/thread_pool.cpp.i
+.PHONY : src/thread_pool.i
 
 # target to preprocess a source file
-src/threadpool.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/threadpool.cpp.i
-.PHONY : src/threadpool.cpp.i
+src/thread_pool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/thread_pool.cpp.i
+.PHONY : src/thread_pool.cpp.i
 
-src/threadpool.s: src/threadpool.cpp.s
-.PHONY : src/threadpool.s
+src/thread_pool.s: src/thread_pool.cpp.s
+.PHONY : src/thread_pool.s
 
 # target to generate assembly for a file
-src/threadpool.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/threadpool.cpp.s
-.PHONY : src/threadpool.cpp.s
+src/thread_pool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/thread_pool.cpp.s
+.PHONY : src/thread_pool.cpp.s
 
 # Help Target
 help:
@@ -210,15 +258,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... URLShortner"
+	@echo "... src/connection_pool.o"
+	@echo "... src/connection_pool.i"
+	@echo "... src/connection_pool.s"
+	@echo "... src/database.o"
+	@echo "... src/database.i"
+	@echo "... src/database.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
 	@echo "... src/server.o"
 	@echo "... src/server.i"
 	@echo "... src/server.s"
-	@echo "... src/threadpool.o"
-	@echo "... src/threadpool.i"
-	@echo "... src/threadpool.s"
+	@echo "... src/thread_pool.o"
+	@echo "... src/thread_pool.i"
+	@echo "... src/thread_pool.s"
 .PHONY : help
 
 
