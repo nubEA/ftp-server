@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.10) #min version 
+cmake_minimum_required(VERSION 3.10) # Minimum CMake version required
 
 # Project name and version
 project(URLShortner VERSION 1.0)
 
 # Set C++ standard
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 20)  # Use C++20 instead of C++23 for better compiler support
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Define project structure
@@ -24,7 +24,27 @@ set(SOURCES
 )
 
 # Add the executable
-add_executable(ftp ${SOURCES})
+add_executable(URLShortner ${SOURCES})
+
+# Find and link PostgreSQL
+find_package(PostgreSQL REQUIRED)
+
+if(PostgreSQL_FOUND)
+    message(STATUS "PostgreSQL found: ${PostgreSQL_INCLUDE_DIRS}, linking...")
+    target_include_directories(URLShortner PRIVATE ${PostgreSQL_INCLUDE_DIRS})
+    target_link_libraries(URLShortner PRIVATE ${PostgreSQL_LIBRARIES})
+else()
+    message(FATAL_ERROR "PostgreSQL NOT found. Install libpq-dev and retry.")
+endif()
+
+# Ensure OpenSSL is found and linked
+find_package(OpenSSL REQUIRED)
+if(OpenSSL_FOUND)
+    message(STATUS "OpenSSL found and linked to the project")
+    target_link_libraries(URLShortner PRIVATE OpenSSL::Crypto)
+else()
+    message(FATAL_ERROR "OpenSSL NOT found! Install libssl-dev (Linux) or OpenSSL (Mac/Windows).")
+endif()
 
 # Set output directory
 set_target_properties(URLShortner PROPERTIES
@@ -37,10 +57,3 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     target_compile_options(URLShortner PRIVATE /W4)
 endif()
-
-# Find and link OpenSSL
-find_package(OpenSSL REQUIRED)
-target_link_libraries(URLShortner PRIVATE OpenSSL::Crypto)
-
-# Display a message indicating OpenSSL linking
-message(STATUS "OpenSSL found and linked to the project")

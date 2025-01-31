@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/URLShortner.dir/src/server.cpp.o CMakeFiles/URLShortner.dir/src/main.cpp.o CMakeFiles/URLShortner.dir/src/threadpool.cpp.o -o URLShortner  /usr/lib64/libcrypto.so
+/usr/bin/c++ CMakeFiles/URLShortner.dir/src/server.cpp.o CMakeFiles/URLShortner.dir/src/main.cpp.o CMakeFiles/URLShortner.dir/src/thread_pool.cpp.o CMakeFiles/URLShortner.dir/src/database.cpp.o CMakeFiles/URLShortner.dir/src/connection_pool.cpp.o -o URLShortner  /usr/lib64/libpq.so /usr/lib64/libcrypto.so
