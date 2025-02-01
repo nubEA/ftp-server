@@ -7,7 +7,7 @@
 #include <memory>
 #include <libpq-fe.h>
 #include <chrono>
-#include <iostream> 
+#include <iostream>
 
 /**
  * @class ConnectionPool
@@ -20,9 +20,9 @@
 class ConnectionPool {
 public:
     /**
-     * @brief Custom deleter functor for PGconn objects.
+     * @brief Custom deleter function for PGconn objects.
      *
-     * This functor ensures that PGconn objects are properly cleaned up using PQfinish.
+     * This function ensures that PGconn objects are properly cleaned up using PQfinish.
      */
     struct Deleter {
         void operator()(PGconn* conn) {
@@ -66,6 +66,19 @@ public:
      */
     void return_connection(std::unique_ptr<PGconn, Deleter> conn);
 
+        /**
+     * @brief Checks the status of a PostgreSQL connection.
+     * @param conn A reference to a unique_ptr holding the PGconn object.
+     * @return True if the connection is valid, false otherwise.
+     *
+     * This helper function checks the status of a PostgreSQL connection using PQstatus.
+     */
+    static bool check_pq_status(const std::unique_ptr<PGconn, Deleter>& conn);
+
+    //Returns pool size so that we can use this to prepare statements for each connection in the pool
+    size_t get_pool_size();
+
+
 private:
     std::queue<std::unique_ptr<PGconn, Deleter>> availableConnections;  ///< The pool of available database connections.
     std::mutex poolMutex;                                              ///< Mutex to ensure thread-safe access to the pool.
@@ -74,14 +87,6 @@ private:
     std::string connInfo;                                              ///< The connection information string for the PostgreSQL database.
     std::chrono::milliseconds timeoutDuration;                         ///< The timeout duration for waiting for a connection.
 
-    /**
-     * @brief Checks the status of a PostgreSQL connection.
-     * @param conn A reference to a unique_ptr holding the PGconn object.
-     * @return True if the connection is valid, false otherwise.
-     *
-     * This helper function checks the status of a PostgreSQL connection using PQstatus.
-     */
-    static bool check_pq_status(const std::unique_ptr<PGconn, Deleter>& conn);
 
     /**
      * @brief Creates a new PostgreSQL connection.
