@@ -139,13 +139,43 @@ CMakeFiles/URLShortner.dir/src/connection_pool.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/URLShortner.dir/src/connection_pool.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harshit/code/ftp-server/src/connection_pool.cpp -o CMakeFiles/URLShortner.dir/src/connection_pool.cpp.s
 
+CMakeFiles/URLShortner.dir/src/http_parser.cpp.o: CMakeFiles/URLShortner.dir/flags.make
+CMakeFiles/URLShortner.dir/src/http_parser.cpp.o: /home/harshit/code/ftp-server/src/http_parser.cpp
+CMakeFiles/URLShortner.dir/src/http_parser.cpp.o: CMakeFiles/URLShortner.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/harshit/code/ftp-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/URLShortner.dir/src/http_parser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/URLShortner.dir/src/http_parser.cpp.o -MF CMakeFiles/URLShortner.dir/src/http_parser.cpp.o.d -o CMakeFiles/URLShortner.dir/src/http_parser.cpp.o -c /home/harshit/code/ftp-server/src/http_parser.cpp
+
+CMakeFiles/URLShortner.dir/src/http_parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/URLShortner.dir/src/http_parser.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harshit/code/ftp-server/src/http_parser.cpp > CMakeFiles/URLShortner.dir/src/http_parser.cpp.i
+
+CMakeFiles/URLShortner.dir/src/http_parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/URLShortner.dir/src/http_parser.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harshit/code/ftp-server/src/http_parser.cpp -o CMakeFiles/URLShortner.dir/src/http_parser.cpp.s
+
+CMakeFiles/URLShortner.dir/src/http_request.cpp.o: CMakeFiles/URLShortner.dir/flags.make
+CMakeFiles/URLShortner.dir/src/http_request.cpp.o: /home/harshit/code/ftp-server/src/http_request.cpp
+CMakeFiles/URLShortner.dir/src/http_request.cpp.o: CMakeFiles/URLShortner.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/harshit/code/ftp-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/URLShortner.dir/src/http_request.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/URLShortner.dir/src/http_request.cpp.o -MF CMakeFiles/URLShortner.dir/src/http_request.cpp.o.d -o CMakeFiles/URLShortner.dir/src/http_request.cpp.o -c /home/harshit/code/ftp-server/src/http_request.cpp
+
+CMakeFiles/URLShortner.dir/src/http_request.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/URLShortner.dir/src/http_request.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harshit/code/ftp-server/src/http_request.cpp > CMakeFiles/URLShortner.dir/src/http_request.cpp.i
+
+CMakeFiles/URLShortner.dir/src/http_request.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/URLShortner.dir/src/http_request.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harshit/code/ftp-server/src/http_request.cpp -o CMakeFiles/URLShortner.dir/src/http_request.cpp.s
+
 # Object files for target URLShortner
 URLShortner_OBJECTS = \
 "CMakeFiles/URLShortner.dir/src/server.cpp.o" \
 "CMakeFiles/URLShortner.dir/src/main.cpp.o" \
 "CMakeFiles/URLShortner.dir/src/thread_pool.cpp.o" \
 "CMakeFiles/URLShortner.dir/src/database.cpp.o" \
-"CMakeFiles/URLShortner.dir/src/connection_pool.cpp.o"
+"CMakeFiles/URLShortner.dir/src/connection_pool.cpp.o" \
+"CMakeFiles/URLShortner.dir/src/http_parser.cpp.o" \
+"CMakeFiles/URLShortner.dir/src/http_request.cpp.o"
 
 # External object files for target URLShortner
 URLShortner_EXTERNAL_OBJECTS =
@@ -155,11 +185,13 @@ URLShortner: CMakeFiles/URLShortner.dir/src/main.cpp.o
 URLShortner: CMakeFiles/URLShortner.dir/src/thread_pool.cpp.o
 URLShortner: CMakeFiles/URLShortner.dir/src/database.cpp.o
 URLShortner: CMakeFiles/URLShortner.dir/src/connection_pool.cpp.o
+URLShortner: CMakeFiles/URLShortner.dir/src/http_parser.cpp.o
+URLShortner: CMakeFiles/URLShortner.dir/src/http_request.cpp.o
 URLShortner: CMakeFiles/URLShortner.dir/build.make
 URLShortner: /usr/lib64/libpq.so
 URLShortner: /usr/lib64/libcrypto.so
 URLShortner: CMakeFiles/URLShortner.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/harshit/code/ftp-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable URLShortner"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/harshit/code/ftp-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable URLShortner"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/URLShortner.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

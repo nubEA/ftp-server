@@ -177,6 +177,54 @@ src/database.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/database.cpp.s
 .PHONY : src/database.cpp.s
 
+src/http_parser.o: src/http_parser.cpp.o
+.PHONY : src/http_parser.o
+
+# target to build an object file
+src/http_parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http_parser.cpp.o
+.PHONY : src/http_parser.cpp.o
+
+src/http_parser.i: src/http_parser.cpp.i
+.PHONY : src/http_parser.i
+
+# target to preprocess a source file
+src/http_parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http_parser.cpp.i
+.PHONY : src/http_parser.cpp.i
+
+src/http_parser.s: src/http_parser.cpp.s
+.PHONY : src/http_parser.s
+
+# target to generate assembly for a file
+src/http_parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http_parser.cpp.s
+.PHONY : src/http_parser.cpp.s
+
+src/http_request.o: src/http_request.cpp.o
+.PHONY : src/http_request.o
+
+# target to build an object file
+src/http_request.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http_request.cpp.o
+.PHONY : src/http_request.cpp.o
+
+src/http_request.i: src/http_request.cpp.i
+.PHONY : src/http_request.i
+
+# target to preprocess a source file
+src/http_request.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http_request.cpp.i
+.PHONY : src/http_request.cpp.i
+
+src/http_request.s: src/http_request.cpp.s
+.PHONY : src/http_request.s
+
+# target to generate assembly for a file
+src/http_request.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http_request.cpp.s
+.PHONY : src/http_request.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -264,6 +312,12 @@ help:
 	@echo "... src/database.o"
 	@echo "... src/database.i"
 	@echo "... src/database.s"
+	@echo "... src/http_parser.o"
+	@echo "... src/http_parser.i"
+	@echo "... src/http_parser.s"
+	@echo "... src/http_request.o"
+	@echo "... src/http_request.i"
+	@echo "... src/http_request.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

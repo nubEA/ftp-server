@@ -21,6 +21,8 @@ set(SOURCES
     ${SRC_DIR}/thread_pool.cpp
     ${SRC_DIR}/database.cpp
     ${SRC_DIR}/connection_pool.cpp
+    ${SRC_DIR}/http_parser.cpp
+    ${SRC_DIR}/http_request.cpp
 )
 
 # Add the executable
