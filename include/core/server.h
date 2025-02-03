@@ -14,6 +14,11 @@
 #include <atomic>
 #include <csignal>
 #include "thread_pool.h"
+#include "connection_pool.h"
+#include "http_request.h"
+#include "http_response.h"
+#include "router.h"
+#include "http_parser.h"
 
 class Server {
 public:

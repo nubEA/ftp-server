@@ -4,25 +4,37 @@ cmake_minimum_required(VERSION 3.10) # Minimum CMake version required
 project(URLShortner VERSION 1.0)
 
 # Set C++ standard
-set(CMAKE_CXX_STANDARD 20)  # Use C++20 instead of C++23 for better compiler support
+set(CMAKE_CXX_STANDARD 20)  # Use C++20 for wider compiler support
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Define project structure
 set(SRC_DIR "${CMAKE_SOURCE_DIR}/src")
 set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include")
 
-# Include directories
-include_directories(${INCLUDE_DIR})
+# Include directories for headers
+include_directories(
+    ${INCLUDE_DIR}
+    ${INCLUDE_DIR}/core
+    ${INCLUDE_DIR}/http
+    ${INCLUDE_DIR}/database
+    ${INCLUDE_DIR}/handlers
+    ${INCLUDE_DIR}/utility
+)
 
 # Source files
 set(SOURCES
-    ${SRC_DIR}/server.cpp
+    ${SRC_DIR}/core/server.cpp
+    ${SRC_DIR}/core/thread_pool.cpp
+    ${SRC_DIR}/core/connection_pool.cpp
+    ${SRC_DIR}/database/database.cpp
+    ${SRC_DIR}/http/http_parser.cpp
+    ${SRC_DIR}/http/router.cpp
+    ${SRC_DIR}/http/http_response.cpp
+    ${SRC_DIR}/http/http_request.cpp
     ${SRC_DIR}/main.cpp
-    ${SRC_DIR}/thread_pool.cpp
-    ${SRC_DIR}/database.cpp
-    ${SRC_DIR}/connection_pool.cpp
-    ${SRC_DIR}/http_parser.cpp
-    ${SRC_DIR}/http_request.cpp
+    ${SRC_DIR}/handlers/get_register_handler.cpp
+    ${SRC_DIR}/handlers/post_register_handler.cpp
+    ${SRC_DIR}/utility/util.cpp
 )
 
 # Add the executable
@@ -30,7 +42,6 @@ add_executable(URLShortner ${SOURCES})
 
 # Find and link PostgreSQL
 find_package(PostgreSQL REQUIRED)
-
 if(PostgreSQL_FOUND)
     message(STATUS "PostgreSQL found: ${PostgreSQL_INCLUDE_DIRS}, linking...")
     target_include_directories(URLShortner PRIVATE ${PostgreSQL_INCLUDE_DIRS})

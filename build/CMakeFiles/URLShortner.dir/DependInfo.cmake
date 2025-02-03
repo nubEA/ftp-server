@@ -8,13 +8,18 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/harshit/code/ftp-server/src/connection_pool.cpp" "CMakeFiles/URLShortner.dir/src/connection_pool.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/connection_pool.cpp.o.d"
-  "/home/harshit/code/ftp-server/src/database.cpp" "CMakeFiles/URLShortner.dir/src/database.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/database.cpp.o.d"
-  "/home/harshit/code/ftp-server/src/http_parser.cpp" "CMakeFiles/URLShortner.dir/src/http_parser.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/http_parser.cpp.o.d"
-  "/home/harshit/code/ftp-server/src/http_request.cpp" "CMakeFiles/URLShortner.dir/src/http_request.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/http_request.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/core/connection_pool.cpp" "CMakeFiles/URLShortner.dir/src/core/connection_pool.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/core/connection_pool.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/core/server.cpp" "CMakeFiles/URLShortner.dir/src/core/server.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/core/server.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/core/thread_pool.cpp" "CMakeFiles/URLShortner.dir/src/core/thread_pool.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/core/thread_pool.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/database/database.cpp" "CMakeFiles/URLShortner.dir/src/database/database.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/database/database.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/handlers/get_register_handler.cpp" "CMakeFiles/URLShortner.dir/src/handlers/get_register_handler.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/handlers/get_register_handler.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/handlers/post_register_handler.cpp" "CMakeFiles/URLShortner.dir/src/handlers/post_register_handler.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/handlers/post_register_handler.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/http/http_parser.cpp" "CMakeFiles/URLShortner.dir/src/http/http_parser.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/http/http_parser.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/http/http_request.cpp" "CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/http/http_response.cpp" "CMakeFiles/URLShortner.dir/src/http/http_response.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/http/http_response.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/http/router.cpp" "CMakeFiles/URLShortner.dir/src/http/router.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/http/router.cpp.o.d"
   "/home/harshit/code/ftp-server/src/main.cpp" "CMakeFiles/URLShortner.dir/src/main.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/main.cpp.o.d"
-  "/home/harshit/code/ftp-server/src/server.cpp" "CMakeFiles/URLShortner.dir/src/server.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/server.cpp.o.d"
-  "/home/harshit/code/ftp-server/src/thread_pool.cpp" "CMakeFiles/URLShortner.dir/src/thread_pool.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/thread_pool.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/utility/util.cpp" "CMakeFiles/URLShortner.dir/src/utility/util.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/utility/util.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -171,8 +171,15 @@ void Server::handle_request(int sockfd)
         }
 
         std::cout << "Received: " << std::string(buffer, bytesReceived) << '\n';
+        //Parse the HTTP request
+        HttpRequest req = HttpParser::parse(std::string(buffer,bytesReceived));  
+        Router router;
+        //Generate response object
+        HttpResponse res = router.handle_request(req);
+        //Get string response
+        std::string string_res = res.get_string_response();
 
-        if(send(clientSocketFd,&buffer,bytesReceived,0) == -1){
+        if(send(clientSocketFd,string_res.c_str(),string_res.size(),0) == -1){
             perror("Error Sending\n");
         }
         close(clientSocketFd);

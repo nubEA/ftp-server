@@ -129,101 +129,245 @@ URLShortner/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/build
 .PHONY : URLShortner/fast
 
-src/connection_pool.o: src/connection_pool.cpp.o
-.PHONY : src/connection_pool.o
+src/core/connection_pool.o: src/core/connection_pool.cpp.o
+.PHONY : src/core/connection_pool.o
 
 # target to build an object file
-src/connection_pool.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/connection_pool.cpp.o
-.PHONY : src/connection_pool.cpp.o
+src/core/connection_pool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/core/connection_pool.cpp.o
+.PHONY : src/core/connection_pool.cpp.o
 
-src/connection_pool.i: src/connection_pool.cpp.i
-.PHONY : src/connection_pool.i
+src/core/connection_pool.i: src/core/connection_pool.cpp.i
+.PHONY : src/core/connection_pool.i
 
 # target to preprocess a source file
-src/connection_pool.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/connection_pool.cpp.i
-.PHONY : src/connection_pool.cpp.i
+src/core/connection_pool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/core/connection_pool.cpp.i
+.PHONY : src/core/connection_pool.cpp.i
 
-src/connection_pool.s: src/connection_pool.cpp.s
-.PHONY : src/connection_pool.s
+src/core/connection_pool.s: src/core/connection_pool.cpp.s
+.PHONY : src/core/connection_pool.s
 
 # target to generate assembly for a file
-src/connection_pool.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/connection_pool.cpp.s
-.PHONY : src/connection_pool.cpp.s
+src/core/connection_pool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/core/connection_pool.cpp.s
+.PHONY : src/core/connection_pool.cpp.s
 
-src/database.o: src/database.cpp.o
-.PHONY : src/database.o
+src/core/server.o: src/core/server.cpp.o
+.PHONY : src/core/server.o
 
 # target to build an object file
-src/database.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/database.cpp.o
-.PHONY : src/database.cpp.o
+src/core/server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/core/server.cpp.o
+.PHONY : src/core/server.cpp.o
 
-src/database.i: src/database.cpp.i
-.PHONY : src/database.i
+src/core/server.i: src/core/server.cpp.i
+.PHONY : src/core/server.i
 
 # target to preprocess a source file
-src/database.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/database.cpp.i
-.PHONY : src/database.cpp.i
+src/core/server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/core/server.cpp.i
+.PHONY : src/core/server.cpp.i
 
-src/database.s: src/database.cpp.s
-.PHONY : src/database.s
+src/core/server.s: src/core/server.cpp.s
+.PHONY : src/core/server.s
 
 # target to generate assembly for a file
-src/database.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/database.cpp.s
-.PHONY : src/database.cpp.s
+src/core/server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/core/server.cpp.s
+.PHONY : src/core/server.cpp.s
 
-src/http_parser.o: src/http_parser.cpp.o
-.PHONY : src/http_parser.o
+src/core/thread_pool.o: src/core/thread_pool.cpp.o
+.PHONY : src/core/thread_pool.o
 
 # target to build an object file
-src/http_parser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http_parser.cpp.o
-.PHONY : src/http_parser.cpp.o
+src/core/thread_pool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/core/thread_pool.cpp.o
+.PHONY : src/core/thread_pool.cpp.o
 
-src/http_parser.i: src/http_parser.cpp.i
-.PHONY : src/http_parser.i
+src/core/thread_pool.i: src/core/thread_pool.cpp.i
+.PHONY : src/core/thread_pool.i
 
 # target to preprocess a source file
-src/http_parser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http_parser.cpp.i
-.PHONY : src/http_parser.cpp.i
+src/core/thread_pool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/core/thread_pool.cpp.i
+.PHONY : src/core/thread_pool.cpp.i
 
-src/http_parser.s: src/http_parser.cpp.s
-.PHONY : src/http_parser.s
+src/core/thread_pool.s: src/core/thread_pool.cpp.s
+.PHONY : src/core/thread_pool.s
 
 # target to generate assembly for a file
-src/http_parser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http_parser.cpp.s
-.PHONY : src/http_parser.cpp.s
+src/core/thread_pool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/core/thread_pool.cpp.s
+.PHONY : src/core/thread_pool.cpp.s
 
-src/http_request.o: src/http_request.cpp.o
-.PHONY : src/http_request.o
+src/database/database.o: src/database/database.cpp.o
+.PHONY : src/database/database.o
 
 # target to build an object file
-src/http_request.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http_request.cpp.o
-.PHONY : src/http_request.cpp.o
+src/database/database.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/database/database.cpp.o
+.PHONY : src/database/database.cpp.o
 
-src/http_request.i: src/http_request.cpp.i
-.PHONY : src/http_request.i
+src/database/database.i: src/database/database.cpp.i
+.PHONY : src/database/database.i
 
 # target to preprocess a source file
-src/http_request.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http_request.cpp.i
-.PHONY : src/http_request.cpp.i
+src/database/database.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/database/database.cpp.i
+.PHONY : src/database/database.cpp.i
 
-src/http_request.s: src/http_request.cpp.s
-.PHONY : src/http_request.s
+src/database/database.s: src/database/database.cpp.s
+.PHONY : src/database/database.s
 
 # target to generate assembly for a file
-src/http_request.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http_request.cpp.s
-.PHONY : src/http_request.cpp.s
+src/database/database.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/database/database.cpp.s
+.PHONY : src/database/database.cpp.s
+
+src/handlers/get_register_handler.o: src/handlers/get_register_handler.cpp.o
+.PHONY : src/handlers/get_register_handler.o
+
+# target to build an object file
+src/handlers/get_register_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/get_register_handler.cpp.o
+.PHONY : src/handlers/get_register_handler.cpp.o
+
+src/handlers/get_register_handler.i: src/handlers/get_register_handler.cpp.i
+.PHONY : src/handlers/get_register_handler.i
+
+# target to preprocess a source file
+src/handlers/get_register_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/get_register_handler.cpp.i
+.PHONY : src/handlers/get_register_handler.cpp.i
+
+src/handlers/get_register_handler.s: src/handlers/get_register_handler.cpp.s
+.PHONY : src/handlers/get_register_handler.s
+
+# target to generate assembly for a file
+src/handlers/get_register_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/get_register_handler.cpp.s
+.PHONY : src/handlers/get_register_handler.cpp.s
+
+src/handlers/post_register_handler.o: src/handlers/post_register_handler.cpp.o
+.PHONY : src/handlers/post_register_handler.o
+
+# target to build an object file
+src/handlers/post_register_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/post_register_handler.cpp.o
+.PHONY : src/handlers/post_register_handler.cpp.o
+
+src/handlers/post_register_handler.i: src/handlers/post_register_handler.cpp.i
+.PHONY : src/handlers/post_register_handler.i
+
+# target to preprocess a source file
+src/handlers/post_register_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/post_register_handler.cpp.i
+.PHONY : src/handlers/post_register_handler.cpp.i
+
+src/handlers/post_register_handler.s: src/handlers/post_register_handler.cpp.s
+.PHONY : src/handlers/post_register_handler.s
+
+# target to generate assembly for a file
+src/handlers/post_register_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/post_register_handler.cpp.s
+.PHONY : src/handlers/post_register_handler.cpp.s
+
+src/http/http_parser.o: src/http/http_parser.cpp.o
+.PHONY : src/http/http_parser.o
+
+# target to build an object file
+src/http/http_parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/http_parser.cpp.o
+.PHONY : src/http/http_parser.cpp.o
+
+src/http/http_parser.i: src/http/http_parser.cpp.i
+.PHONY : src/http/http_parser.i
+
+# target to preprocess a source file
+src/http/http_parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/http_parser.cpp.i
+.PHONY : src/http/http_parser.cpp.i
+
+src/http/http_parser.s: src/http/http_parser.cpp.s
+.PHONY : src/http/http_parser.s
+
+# target to generate assembly for a file
+src/http/http_parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/http_parser.cpp.s
+.PHONY : src/http/http_parser.cpp.s
+
+src/http/http_request.o: src/http/http_request.cpp.o
+.PHONY : src/http/http_request.o
+
+# target to build an object file
+src/http/http_request.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o
+.PHONY : src/http/http_request.cpp.o
+
+src/http/http_request.i: src/http/http_request.cpp.i
+.PHONY : src/http/http_request.i
+
+# target to preprocess a source file
+src/http/http_request.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/http_request.cpp.i
+.PHONY : src/http/http_request.cpp.i
+
+src/http/http_request.s: src/http/http_request.cpp.s
+.PHONY : src/http/http_request.s
+
+# target to generate assembly for a file
+src/http/http_request.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/http_request.cpp.s
+.PHONY : src/http/http_request.cpp.s
+
+src/http/http_response.o: src/http/http_response.cpp.o
+.PHONY : src/http/http_response.o
+
+# target to build an object file
+src/http/http_response.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/http_response.cpp.o
+.PHONY : src/http/http_response.cpp.o
+
+src/http/http_response.i: src/http/http_response.cpp.i
+.PHONY : src/http/http_response.i
+
+# target to preprocess a source file
+src/http/http_response.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/http_response.cpp.i
+.PHONY : src/http/http_response.cpp.i
+
+src/http/http_response.s: src/http/http_response.cpp.s
+.PHONY : src/http/http_response.s
+
+# target to generate assembly for a file
+src/http/http_response.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/http_response.cpp.s
+.PHONY : src/http/http_response.cpp.s
+
+src/http/router.o: src/http/router.cpp.o
+.PHONY : src/http/router.o
+
+# target to build an object file
+src/http/router.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/router.cpp.o
+.PHONY : src/http/router.cpp.o
+
+src/http/router.i: src/http/router.cpp.i
+.PHONY : src/http/router.i
+
+# target to preprocess a source file
+src/http/router.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/router.cpp.i
+.PHONY : src/http/router.cpp.i
+
+src/http/router.s: src/http/router.cpp.s
+.PHONY : src/http/router.s
+
+# target to generate assembly for a file
+src/http/router.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/router.cpp.s
+.PHONY : src/http/router.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -249,53 +393,29 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/server.o: src/server.cpp.o
-.PHONY : src/server.o
+src/utility/util.o: src/utility/util.cpp.o
+.PHONY : src/utility/util.o
 
 # target to build an object file
-src/server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/server.cpp.o
-.PHONY : src/server.cpp.o
+src/utility/util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/utility/util.cpp.o
+.PHONY : src/utility/util.cpp.o
 
-src/server.i: src/server.cpp.i
-.PHONY : src/server.i
-
-# target to preprocess a source file
-src/server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/server.cpp.i
-.PHONY : src/server.cpp.i
-
-src/server.s: src/server.cpp.s
-.PHONY : src/server.s
-
-# target to generate assembly for a file
-src/server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/server.cpp.s
-.PHONY : src/server.cpp.s
-
-src/thread_pool.o: src/thread_pool.cpp.o
-.PHONY : src/thread_pool.o
-
-# target to build an object file
-src/thread_pool.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/thread_pool.cpp.o
-.PHONY : src/thread_pool.cpp.o
-
-src/thread_pool.i: src/thread_pool.cpp.i
-.PHONY : src/thread_pool.i
+src/utility/util.i: src/utility/util.cpp.i
+.PHONY : src/utility/util.i
 
 # target to preprocess a source file
-src/thread_pool.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/thread_pool.cpp.i
-.PHONY : src/thread_pool.cpp.i
+src/utility/util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/utility/util.cpp.i
+.PHONY : src/utility/util.cpp.i
 
-src/thread_pool.s: src/thread_pool.cpp.s
-.PHONY : src/thread_pool.s
+src/utility/util.s: src/utility/util.cpp.s
+.PHONY : src/utility/util.s
 
 # target to generate assembly for a file
-src/thread_pool.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/thread_pool.cpp.s
-.PHONY : src/thread_pool.cpp.s
+src/utility/util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/utility/util.cpp.s
+.PHONY : src/utility/util.cpp.s
 
 # Help Target
 help:
@@ -306,27 +426,42 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... URLShortner"
-	@echo "... src/connection_pool.o"
-	@echo "... src/connection_pool.i"
-	@echo "... src/connection_pool.s"
-	@echo "... src/database.o"
-	@echo "... src/database.i"
-	@echo "... src/database.s"
-	@echo "... src/http_parser.o"
-	@echo "... src/http_parser.i"
-	@echo "... src/http_parser.s"
-	@echo "... src/http_request.o"
-	@echo "... src/http_request.i"
-	@echo "... src/http_request.s"
+	@echo "... src/core/connection_pool.o"
+	@echo "... src/core/connection_pool.i"
+	@echo "... src/core/connection_pool.s"
+	@echo "... src/core/server.o"
+	@echo "... src/core/server.i"
+	@echo "... src/core/server.s"
+	@echo "... src/core/thread_pool.o"
+	@echo "... src/core/thread_pool.i"
+	@echo "... src/core/thread_pool.s"
+	@echo "... src/database/database.o"
+	@echo "... src/database/database.i"
+	@echo "... src/database/database.s"
+	@echo "... src/handlers/get_register_handler.o"
+	@echo "... src/handlers/get_register_handler.i"
+	@echo "... src/handlers/get_register_handler.s"
+	@echo "... src/handlers/post_register_handler.o"
+	@echo "... src/handlers/post_register_handler.i"
+	@echo "... src/handlers/post_register_handler.s"
+	@echo "... src/http/http_parser.o"
+	@echo "... src/http/http_parser.i"
+	@echo "... src/http/http_parser.s"
+	@echo "... src/http/http_request.o"
+	@echo "... src/http/http_request.i"
+	@echo "... src/http/http_request.s"
+	@echo "... src/http/http_response.o"
+	@echo "... src/http/http_response.i"
+	@echo "... src/http/http_response.s"
+	@echo "... src/http/router.o"
+	@echo "... src/http/router.i"
+	@echo "... src/http/router.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/server.o"
-	@echo "... src/server.i"
-	@echo "... src/server.s"
-	@echo "... src/thread_pool.o"
-	@echo "... src/thread_pool.i"
-	@echo "... src/thread_pool.s"
+	@echo "... src/utility/util.o"
+	@echo "... src/utility/util.i"
+	@echo "... src/utility/util.s"
 .PHONY : help
 
 

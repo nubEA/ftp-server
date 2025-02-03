@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/harshit/code/ftp-server/include
+CXX_INCLUDES = -I/home/harshit/code/ftp-server/include -I/home/harshit/code/ftp-server/include/core -I/home/harshit/code/ftp-server/include/http -I/home/harshit/code/ftp-server/include/database -I/home/harshit/code/ftp-server/include/handlers -I/home/harshit/code/ftp-server/include/utility
 
 CXX_FLAGS = -std=gnu++20 -Wall -Wextra -pedantic
 

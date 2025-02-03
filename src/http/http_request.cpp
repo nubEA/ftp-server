@@ -36,6 +36,18 @@ std::string HttpRequest::get_path() const
     return path;
 }
 
+//Gets the query param
+std::string HttpRequest::get_unparsed_query_params() const{
+    //Return the entire string after "?"
+    return unparsedQuery;
+}
+
+//Gets the value corresponding to a key
+std::string HttpRequest::get_query_param(const std::string& key) const
+{
+    return queryParams.at(key);
+}
+
 //Sets the http method
 void HttpRequest::set_method(const std::string& meth)
 {
@@ -70,6 +82,18 @@ void HttpRequest::set_specific_header(const std::string& key, const std::string&
     header[key] = value;
 }
 
+//Set the unparsed Query string
+void HttpRequest::set_unparsed_query_string(const std::string& qString)
+{
+    unparsedQuery = qString;
+}
+
+//Set specific query param
+void HttpRequest::set_specific_query_param(const std::string& key, const std::string& value)
+{
+    queryParams[key] = value;
+}
+
 //Clear the http request obj
 void HttpRequest::clear(){
     method.clear();
@@ -89,4 +113,10 @@ bool HttpRequest::has_body() const
 bool HttpRequest::has_header(const std::string& key) const
 {
     return header.count(key);
+}
+
+//Check if query param exist
+bool HttpRequest::has_query_params() const
+{
+    return (body.find("?") != std::string::npos);
 }
