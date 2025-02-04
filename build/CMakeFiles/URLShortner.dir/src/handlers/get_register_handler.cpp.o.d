@@ -142,4 +142,76 @@ CMakeFiles/URLShortner.dir/src/handlers/get_register_handler.cpp.o: \
  /usr/include/c++/14/bits/enable_special_members.h \
  /usr/include/c++/14/bits/node_handle.h \
  /usr/include/c++/14/bits/erase_if.h \
- /home/harshit/code/ftp-server/include/http/http_response.h
+ /home/harshit/code/ftp-server/include/http/http_response.h \
+ /home/harshit/code/ftp-server/include/database/database.h \
+ /home/harshit/code/ftp-server/include/core/connection_pool.h \
+ /usr/include/c++/14/queue /usr/include/c++/14/deque \
+ /usr/include/c++/14/bits/stl_uninitialized.h \
+ /usr/include/c++/14/bits/stl_deque.h /usr/include/c++/14/bits/deque.tcc \
+ /usr/include/c++/14/vector /usr/include/c++/14/bits/stl_vector.h \
+ /usr/include/c++/14/bits/stl_bvector.h \
+ /usr/include/c++/14/bits/vector.tcc /usr/include/c++/14/bits/stl_heap.h \
+ /usr/include/c++/14/bits/stl_queue.h /usr/include/c++/14/mutex \
+ /usr/include/c++/14/bits/chrono.h /usr/include/c++/14/ratio \
+ /usr/include/c++/14/cstdint \
+ /usr/lib/gcc/x86_64-redhat-linux/14/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
+ /usr/include/bits/stdint-least.h /usr/include/c++/14/limits \
+ /usr/include/c++/14/ctime /usr/include/c++/14/bits/parse_numbers.h \
+ /usr/include/c++/14/bits/std_mutex.h \
+ /usr/include/c++/14/bits/unique_lock.h \
+ /usr/include/c++/14/condition_variable \
+ /usr/include/c++/14/bits/shared_ptr.h \
+ /usr/include/c++/14/bits/shared_ptr_base.h \
+ /usr/include/c++/14/bits/allocated_ptr.h \
+ /usr/include/c++/14/bits/unique_ptr.h \
+ /usr/include/c++/14/ext/concurrence.h /usr/include/c++/14/bits/align.h \
+ /usr/include/c++/14/stop_token /usr/include/c++/14/atomic \
+ /usr/include/c++/14/bits/atomic_base.h \
+ /usr/include/c++/14/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/14/bits/atomic_wait.h /usr/include/c++/14/climits \
+ /usr/lib/gcc/x86_64-redhat-linux/14/include/limits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/14/include/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+ /usr/include/bits/uio_lim.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+ /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h /usr/include/syscall.h \
+ /usr/include/sys/syscall.h /usr/include/asm/unistd.h \
+ /usr/include/asm/unistd_64.h /usr/include/bits/syscall.h \
+ /usr/include/c++/14/bits/std_thread.h /usr/include/c++/14/semaphore \
+ /usr/include/c++/14/bits/semaphore_base.h \
+ /usr/include/c++/14/bits/atomic_timed_wait.h \
+ /usr/include/c++/14/bits/this_thread_sleep.h /usr/include/sys/time.h \
+ /usr/include/semaphore.h /usr/include/bits/semaphore.h \
+ /usr/include/c++/14/memory /usr/include/c++/14/bits/stl_tempbuf.h \
+ /usr/include/c++/14/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/14/bits/shared_ptr_atomic.h \
+ /usr/include/c++/14/backward/auto_ptr.h \
+ /usr/include/c++/14/bits/ranges_uninitialized.h \
+ /usr/include/c++/14/bits/ranges_algobase.h \
+ /usr/include/c++/14/pstl/glue_memory_defs.h \
+ /usr/include/c++/14/pstl/execution_defs.h /usr/include/libpq-fe.h \
+ /usr/include/postgres_ext.h /usr/include/pg_config_ext.h \
+ /usr/include/pg_config_ext-x86_64.h /usr/include/c++/14/chrono \
+ /usr/include/c++/14/sstream /usr/include/c++/14/bits/sstream.tcc \
+ /usr/include/c++/14/bits/stl_algo.h \
+ /usr/include/c++/14/bits/algorithmfwd.h \
+ /usr/include/c++/14/bits/uniform_int_dist.h \
+ /usr/include/c++/14/bits/chrono_io.h /usr/include/c++/14/iomanip \
+ /usr/include/c++/14/locale \
+ /usr/include/c++/14/bits/locale_facets_nonio.h \
+ /usr/include/c++/14/x86_64-redhat-linux/bits/time_members.h \
+ /usr/include/c++/14/x86_64-redhat-linux/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/14/bits/codecvt.h \
+ /usr/include/c++/14/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/14/bits/locale_conv.h \
+ /usr/include/c++/14/bits/quoted_string.h /usr/include/c++/14/format \
+ /usr/include/c++/14/array /usr/include/c++/14/charconv \
+ /usr/include/c++/14/optional /usr/include/c++/14/span \
+ /usr/include/c++/14/variant /usr/include/c++/14/bits/unicode.h \
+ /usr/include/c++/14/bits/unicode-data.h /usr/include/c++/14/functional \
+ /usr/include/c++/14/bits/std_function.h

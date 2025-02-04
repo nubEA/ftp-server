@@ -17,7 +17,7 @@ void PostRegisterHandler::handle_invalid_credential_error(HttpResponse& res)
     return;
 }
 
-void PostRegisterHandler::post_register_handler(HttpRequest& req, HttpResponse& res){
+void PostRegisterHandler::post_register_handler(HttpRequest& req, HttpResponse& res, Database& db){
 
     std::string body = req.get_body();
     //username=<username>&password=<password> so using this template to extract username and pass from body
@@ -40,14 +40,10 @@ void PostRegisterHandler::post_register_handler(HttpRequest& req, HttpResponse& 
     
     std::cout << "Username and password extracted from the body\n";
 
-    //Creating an instance of database
-    std::string connInfo = "host=localhost dbname=file_server_db user=file_server_user password=password";
-    ConnectionPool pool(4,connInfo,10);
-    Database db(pool);
     //Passing the parameters in this array as C-style string
     const char* params[] = {username.c_str()};
     //Passing the length of each param
-    int paramLen[] = {username.length()};
+    int paramLen[] = {static_cast<int>(username.length())};
     //Passing the format 0 -> Text, 1 -> binary
     int paramFormat[] = {0};
     //Number of parameters

@@ -20,7 +20,9 @@ void signalHandler(int signum)
     }
 }
 
-Server::Server(char* port) : pool(4){
+Server::Server(char* port) : pool(4), connInfo("host=localhost dbname=file_server_db user=file_server_user password=password"), 
+                             connPool(5,connInfo,5000), db(connPool)
+{
 
     set_up_signal_handler();
 
@@ -175,7 +177,7 @@ void Server::handle_request(int sockfd)
         HttpRequest req = HttpParser::parse(std::string(buffer,bytesReceived));  
         Router router;
         //Generate response object
-        HttpResponse res = router.handle_request(req);
+        HttpResponse res = router.handle_request(req,db);
         //Get string response
         std::string string_res = res.get_string_response();
 
@@ -187,5 +189,9 @@ void Server::handle_request(int sockfd)
     };
 
     pool.submit(clientTaskHandler);
+}
+
+Database& Server::get_database(){
+    return db;
 }
 

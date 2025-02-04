@@ -11,7 +11,7 @@
 
 class PostRegisterHandler{
     public:
-        static void post_register_handler(HttpRequest& req, HttpResponse& res);
+        static void post_register_handler(HttpRequest& req, HttpResponse& res, Database& db);
     private:
         static void handle_invalid_credential_error(HttpResponse& res);
         static bool is_password_valid(std::string& password);

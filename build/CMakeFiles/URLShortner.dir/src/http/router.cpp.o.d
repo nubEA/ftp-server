@@ -162,7 +162,6 @@ CMakeFiles/URLShortner.dir/src/http/router.cpp.o: \
  /usr/include/c++/14/sstream /usr/include/c++/14/bits/sstream.tcc \
  /home/harshit/code/ftp-server/include/http/http_response.h \
  /home/harshit/code/ftp-server/include/handlers/get_register_handler.h \
- /home/harshit/code/ftp-server/include/handlers/post_register_handler.h \
  /home/harshit/code/ftp-server/include/database/database.h \
  /home/harshit/code/ftp-server/include/core/connection_pool.h \
  /usr/include/c++/14/queue /usr/include/c++/14/deque \
@@ -224,4 +223,5 @@ CMakeFiles/URLShortner.dir/src/http/router.cpp.o: \
  /usr/include/c++/14/optional /usr/include/c++/14/span \
  /usr/include/c++/14/variant /usr/include/c++/14/bits/unicode.h \
  /usr/include/c++/14/bits/unicode-data.h /usr/include/c++/14/functional \
- /usr/include/c++/14/bits/std_function.h
+ /usr/include/c++/14/bits/std_function.h \
+ /home/harshit/code/ftp-server/include/handlers/post_register_handler.h

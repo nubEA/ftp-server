@@ -124,6 +124,7 @@ void HttpParser::parse_request_line(const std::string& line, HttpRequest& req)
     
     //In case of missing method, path or version
     if (method.empty() || path.empty() || version.empty()) {
+        std::cout << "Invalid request\n";
         throw std::runtime_error("Invalid request line");
     }
 

@@ -19,6 +19,7 @@ public:
     std::string get_path() const;                                                   // Returns the request path (e.g., "/login")
     std::string get_unparsed_query_params() const;                                  // Returns the query param (eg, "/register?error=...") 
     std::string get_query_param(const std::string& key) const;                      // Returns the a specific value for a key param
+    std::unordered_map<std::string,std::string> get_query_map() const;
 
     // Setters
     void set_method(const std::string& meth);                                       // Sets the HTTP method

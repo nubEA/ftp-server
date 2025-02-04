@@ -48,6 +48,10 @@ std::string HttpRequest::get_query_param(const std::string& key) const
     return queryParams.at(key);
 }
 
+std::unordered_map<std::string,std::string> HttpRequest::get_query_map() const{
+    return queryParams;
+}
+
 //Sets the http method
 void HttpRequest::set_method(const std::string& meth)
 {

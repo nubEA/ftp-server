@@ -1,6 +1,6 @@
 #include "get_register_handler.h"
 
-void GetRegisterHandler::get_register_handler(HttpRequest& req, HttpResponse& res){
+void GetRegisterHandler::get_register_handler(HttpRequest& req, HttpResponse& res, Database& db){
     //OK status 200
     res.set_status(200,"OK");
     //Setting headers
