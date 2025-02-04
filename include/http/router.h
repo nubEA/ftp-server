@@ -6,6 +6,7 @@
 #include "http_response.h"
 #include "get_register_handler.h"
 #include "post_register_handler.h"
+#include "get_login_handler.h"
 #include "database.h"
 class Router{
     public:

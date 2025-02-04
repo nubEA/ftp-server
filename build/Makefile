@@ -129,6 +129,54 @@ URLShortner/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/build
 .PHONY : URLShortner/fast
 
+src/bcrypt/bcrypt.o: src/bcrypt/bcrypt.cpp.o
+.PHONY : src/bcrypt/bcrypt.o
+
+# target to build an object file
+src/bcrypt/bcrypt.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/bcrypt/bcrypt.cpp.o
+.PHONY : src/bcrypt/bcrypt.cpp.o
+
+src/bcrypt/bcrypt.i: src/bcrypt/bcrypt.cpp.i
+.PHONY : src/bcrypt/bcrypt.i
+
+# target to preprocess a source file
+src/bcrypt/bcrypt.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/bcrypt/bcrypt.cpp.i
+.PHONY : src/bcrypt/bcrypt.cpp.i
+
+src/bcrypt/bcrypt.s: src/bcrypt/bcrypt.cpp.s
+.PHONY : src/bcrypt/bcrypt.s
+
+# target to generate assembly for a file
+src/bcrypt/bcrypt.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/bcrypt/bcrypt.cpp.s
+.PHONY : src/bcrypt/bcrypt.cpp.s
+
+src/bcrypt/blowfish.o: src/bcrypt/blowfish.cpp.o
+.PHONY : src/bcrypt/blowfish.o
+
+# target to build an object file
+src/bcrypt/blowfish.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/bcrypt/blowfish.cpp.o
+.PHONY : src/bcrypt/blowfish.cpp.o
+
+src/bcrypt/blowfish.i: src/bcrypt/blowfish.cpp.i
+.PHONY : src/bcrypt/blowfish.i
+
+# target to preprocess a source file
+src/bcrypt/blowfish.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/bcrypt/blowfish.cpp.i
+.PHONY : src/bcrypt/blowfish.cpp.i
+
+src/bcrypt/blowfish.s: src/bcrypt/blowfish.cpp.s
+.PHONY : src/bcrypt/blowfish.s
+
+# target to generate assembly for a file
+src/bcrypt/blowfish.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/bcrypt/blowfish.cpp.s
+.PHONY : src/bcrypt/blowfish.cpp.s
+
 src/core/connection_pool.o: src/core/connection_pool.cpp.o
 .PHONY : src/core/connection_pool.o
 
@@ -224,6 +272,30 @@ src/database/database.s: src/database/database.cpp.s
 src/database/database.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/database/database.cpp.s
 .PHONY : src/database/database.cpp.s
+
+src/handlers/get_login_handler.o: src/handlers/get_login_handler.cpp.o
+.PHONY : src/handlers/get_login_handler.o
+
+# target to build an object file
+src/handlers/get_login_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/get_login_handler.cpp.o
+.PHONY : src/handlers/get_login_handler.cpp.o
+
+src/handlers/get_login_handler.i: src/handlers/get_login_handler.cpp.i
+.PHONY : src/handlers/get_login_handler.i
+
+# target to preprocess a source file
+src/handlers/get_login_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/get_login_handler.cpp.i
+.PHONY : src/handlers/get_login_handler.cpp.i
+
+src/handlers/get_login_handler.s: src/handlers/get_login_handler.cpp.s
+.PHONY : src/handlers/get_login_handler.s
+
+# target to generate assembly for a file
+src/handlers/get_login_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/get_login_handler.cpp.s
+.PHONY : src/handlers/get_login_handler.cpp.s
 
 src/handlers/get_register_handler.o: src/handlers/get_register_handler.cpp.o
 .PHONY : src/handlers/get_register_handler.o
@@ -426,6 +498,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... URLShortner"
+	@echo "... src/bcrypt/bcrypt.o"
+	@echo "... src/bcrypt/bcrypt.i"
+	@echo "... src/bcrypt/bcrypt.s"
+	@echo "... src/bcrypt/blowfish.o"
+	@echo "... src/bcrypt/blowfish.i"
+	@echo "... src/bcrypt/blowfish.s"
 	@echo "... src/core/connection_pool.o"
 	@echo "... src/core/connection_pool.i"
 	@echo "... src/core/connection_pool.s"
@@ -438,6 +516,9 @@ help:
 	@echo "... src/database/database.o"
 	@echo "... src/database/database.i"
 	@echo "... src/database/database.s"
+	@echo "... src/handlers/get_login_handler.o"
+	@echo "... src/handlers/get_login_handler.i"
+	@echo "... src/handlers/get_login_handler.s"
 	@echo "... src/handlers/get_register_handler.o"
 	@echo "... src/handlers/get_register_handler.i"
 	@echo "... src/handlers/get_register_handler.s"

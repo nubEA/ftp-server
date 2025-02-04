@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/URLShortner.dir/src/bcrypt/bcrypt.cpp.o"
+  "CMakeFiles/URLShortner.dir/src/bcrypt/bcrypt.cpp.o.d"
+  "CMakeFiles/URLShortner.dir/src/bcrypt/blowfish.cpp.o"
+  "CMakeFiles/URLShortner.dir/src/bcrypt/blowfish.cpp.o.d"
   "CMakeFiles/URLShortner.dir/src/core/connection_pool.cpp.o"
   "CMakeFiles/URLShortner.dir/src/core/connection_pool.cpp.o.d"
   "CMakeFiles/URLShortner.dir/src/core/server.cpp.o"
@@ -7,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/URLShortner.dir/src/core/thread_pool.cpp.o.d"
   "CMakeFiles/URLShortner.dir/src/database/database.cpp.o"
   "CMakeFiles/URLShortner.dir/src/database/database.cpp.o.d"
+  "CMakeFiles/URLShortner.dir/src/handlers/get_login_handler.cpp.o"
+  "CMakeFiles/URLShortner.dir/src/handlers/get_login_handler.cpp.o.d"
   "CMakeFiles/URLShortner.dir/src/handlers/get_register_handler.cpp.o"
   "CMakeFiles/URLShortner.dir/src/handlers/get_register_handler.cpp.o.d"
   "CMakeFiles/URLShortner.dir/src/handlers/post_register_handler.cpp.o"

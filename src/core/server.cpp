@@ -1,7 +1,7 @@
 #include "server.h"
 #include "thread_pool.h"
 #define BACKLOG 10
-#define MAX_BUFFER 1024
+#define MAX_BUFFER 10000
 
 //understand why we should throw exceptions over exit(1);
 

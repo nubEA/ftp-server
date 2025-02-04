@@ -252,6 +252,8 @@ CMakeFiles/URLShortner.dir/src/core/server.cpp.o: \
  /home/harshit/code/ftp-server/include/handlers/get_register_handler.h \
  /home/harshit/code/ftp-server/include/database/database.h \
  /home/harshit/code/ftp-server/include/core/connection_pool.h \
+ /home/harshit/code/ftp-server/include/bcrypt/bcrypt.h \
  /home/harshit/code/ftp-server/include/handlers/post_register_handler.h \
+ /home/harshit/code/ftp-server/include/handlers/get_login_handler.h \
  /home/harshit/code/ftp-server/include/http/http_parser.h \
  /home/harshit/code/ftp-server/include/core/thread_pool.h

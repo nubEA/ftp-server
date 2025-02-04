@@ -19,6 +19,7 @@ include_directories(
     ${INCLUDE_DIR}/database
     ${INCLUDE_DIR}/handlers
     ${INCLUDE_DIR}/utility
+    ${INCLUDE_DIR}/bcrypt
 )
 
 # Source files
@@ -35,6 +36,9 @@ set(SOURCES
     ${SRC_DIR}/handlers/get_register_handler.cpp
     ${SRC_DIR}/handlers/post_register_handler.cpp
     ${SRC_DIR}/utility/util.cpp
+    ${SRC_DIR}/bcrypt/bcrypt.cpp
+    ${SRC_DIR}/bcrypt/blowfish.cpp
+    ${SRC_DIR}/handlers/get_login_handler.cpp
 )
 
 # Add the executable

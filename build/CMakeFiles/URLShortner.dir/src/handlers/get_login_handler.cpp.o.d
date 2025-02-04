@@ -1,7 +1,7 @@
-CMakeFiles/URLShortner.dir/src/handlers/get_register_handler.cpp.o: \
- /home/harshit/code/ftp-server/src/handlers/get_register_handler.cpp \
+CMakeFiles/URLShortner.dir/src/handlers/get_login_handler.cpp.o: \
+ /home/harshit/code/ftp-server/src/handlers/get_login_handler.cpp \
  /usr/include/stdc-predef.h \
- /home/harshit/code/ftp-server/include/handlers/get_register_handler.h \
+ /home/harshit/code/ftp-server/include/handlers/get_login_handler.h \
  /home/harshit/code/ftp-server/include/http/http_request.h \
  /usr/include/c++/14/iostream /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \

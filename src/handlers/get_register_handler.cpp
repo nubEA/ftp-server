@@ -14,6 +14,7 @@ void GetRegisterHandler::get_register_handler(HttpRequest& req, HttpResponse& re
     }
 
     //R(....) indicated that we are going to use the content as it is raw string (no need to escape things like "")
+    //name attribute is the key which the request uses to send that input data so name="username" makes sure that form sends username="whateverinput"
     std::string body = 
                         R"(<!DOCTYPE html>
                         <html lang="en">
@@ -32,10 +33,10 @@ void GetRegisterHandler::get_register_handler(HttpRequest& req, HttpResponse& re
 
                     body += R"(
                                 <label for="user-name">User Name: </label>
-                                <input id="user-name" type="text" placeholder="John Doe" autofocus required>
+                                <input id="user-name" type="text" name="username" placeholder="John Doe" autofocus required>
                                 <br><br>
                                 <label for="password">Password: </label>
-                                <input id="password" type="password" required>
+                                <input id="password" name="password" type="password" required>
                                 <br><br>
                                 <button class="register-button">Register</button>
                             </form>

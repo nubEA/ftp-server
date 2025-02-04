@@ -8,6 +8,7 @@ ThreadPool::ThreadPool(size_t numberOfThreads){
 
 ThreadPool::~ThreadPool()
 {
+    std::cout << "Closing the thread pool\n";
     if(!shutdownFlag.load())
     {
         shutdown();
