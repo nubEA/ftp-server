@@ -7,6 +7,12 @@ void GetRegisterHandler::get_register_handler(HttpRequest& req, HttpResponse& re
     res.set_header("Content-Type","text/html");         //HTML content
     res.set_header("Cache-Control","no-store");         //Prevent caching
 
+    std::string errorMessage{};
+    if(req.has_specific_query_param("error")){
+        //Set the error message string acc to query param
+        errorMessage = req.get_query_param("error");
+    }
+
     //R(....) indicated that we are going to use the content as it is raw string (no need to escape things like "")
     std::string body = 
                         R"(<!DOCTYPE html>
@@ -18,7 +24,13 @@ void GetRegisterHandler::get_register_handler(HttpRequest& req, HttpResponse& re
                         </head>
                         <body>
                             <form method="POST" action="/register">
-                                <h1>Registration Page</h1>
+                                <h1>Registration Page</h1>)";
+    
+                    if(!errorMessage.empty()){
+                        body += R"(<p style="color: red;">)" + errorMessage + R"(</p>)";
+                    }
+
+                    body += R"(
                                 <label for="user-name">User Name: </label>
                                 <input id="user-name" type="text" placeholder="John Doe" autofocus required>
                                 <br><br>

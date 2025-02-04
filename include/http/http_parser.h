@@ -21,7 +21,6 @@ private:
     // Helpers to parse components
     static void parse_request_line(const std::string& line, HttpRequest& req);                  // Parses method, path, and HTTP version from request line
     static void parse_headers(const std::vector<std::string>& headerPart, HttpRequest& req);    // Parses headers into key-value pairs
-    static std::string trim(const std::string& line);                                           // Removes leading/trailing whitespace from a string
     static void parse_query_params(const std::string& path, HttpRequest& req);                  // Parses the query params from path string if available
 
 };

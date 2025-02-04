@@ -124,3 +124,9 @@ bool HttpRequest::has_query_params() const
 {
     return (body.find("?") != std::string::npos);
 }
+
+//Check if specific key,value pair exists
+bool HttpRequest::has_specific_query_param(const std::string& key) const
+{
+    return queryParams.count(key);
+}

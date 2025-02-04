@@ -36,6 +36,7 @@ public:
     bool has_body() const;                                                          // Checks if the request has a non-empty body
     bool has_header(const std::string& key) const;                                  // Checks if a specific header exists
     bool has_query_params() const;                                                  // Checks if a query param exists
+    bool has_specific_query_param(const std::string& key) const;                    // Checks if a query key,value pair exits
 
 private:
     std::string method;                                                             // Stores the HTTP method (e.g., "GET", "POST")
