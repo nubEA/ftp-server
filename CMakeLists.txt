@@ -20,6 +20,7 @@ include_directories(
     ${INCLUDE_DIR}/handlers
     ${INCLUDE_DIR}/utility
     ${INCLUDE_DIR}/bcrypt
+    ${INCLUDE_DIR}/middleware
 )
 
 # Source files
@@ -40,6 +41,9 @@ set(SOURCES
     ${SRC_DIR}/bcrypt/blowfish.cpp
     ${SRC_DIR}/handlers/get_login_handler.cpp
     ${SRC_DIR}/handlers/post_login_handler.cpp
+    ${SRC_DIR}/handlers/get_home_handler.cpp
+    ${SRC_DIR}/handlers/post_home_handler.cpp
+    ${SRC_DIR}/middleware/auth.cpp
 )
 
 # Add the executable

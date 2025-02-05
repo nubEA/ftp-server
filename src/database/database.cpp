@@ -23,24 +23,30 @@ std::unique_ptr<PGconn, ConnectionPool::Deleter> Database::get_connection_from_p
 void Database::prepare_queries() {
     // Hold all the queries to prepare
     static const std::vector<Database::QueryInfo> queryList = {
+        // User-related queries
         {"user_reg", "INSERT INTO users (username, password_hash) VALUES ($1, $2);", 2},
         {"user_login", "SELECT id, password_hash FROM users WHERE username = $1;", 1},
         {"user_name_available", "SELECT COUNT(*) FROM users WHERE username = $1;", 1},
         
+        // Refresh token queries
         {"insert_refresh_token", "INSERT INTO user_sessions (user_id, refresh_token_hash, expires_at) VALUES ($1, $2, $3);", 3},
-        {"get_refresh_token", "SELECT id FROM user_sessions WHERE user_id = $1 AND refresh_token_hash = $2;", 2},
-        {"delete_refresh_token", "DELETE FROM user_sessions WHERE user_id = $1 AND refresh_token_hash = $2;", 2},
+        {"get_refresh_token", "SELECT user_id, expires_at FROM user_sessions WHERE refresh_token_hash = $1;", 1},  // Updated query
+        {"delete_refresh_token", "DELETE FROM user_sessions WHERE refresh_token_hash = $1;", 1},  // Updated query
         {"delete_all_tokens_for_user", "DELETE FROM user_sessions WHERE user_id = $1;", 1},
 
+        // File-related queries
         {"file_insertion", "INSERT INTO files (user_id, filename, file_size, download_link, is_compressed) VALUES ($1, $2, $3, $4, $5);", 5},
         {"file_retrieval", "SELECT id, filename, file_size, upload_timestamp, download_link, is_compressed FROM files WHERE download_link = $1;", 1},
         {"file_retrieval_by_id", "SELECT id, filename, file_size, upload_timestamp, download_link, is_compressed FROM files WHERE user_id = $1;", 1},
         {"file_compression", "UPDATE files SET is_compressed = $1 WHERE id = $2;", 2},
         {"file_deletion", "DELETE FROM files WHERE id = $1;", 1},
+        
+        // User info and file count
         {"user_info", "SELECT id, username, password_hash FROM users WHERE username = $1;", 1},
         {"count_user_file", "SELECT COUNT(*) FROM files WHERE user_id = $1;", 1},
         {"all_files", "SELECT id, filename, file_size, upload_timestamp, download_link, is_compressed FROM files WHERE user_id = $1 ORDER BY upload_timestamp DESC;", 1}
-    };
+};
+
 
 
     // Preparing each query

@@ -1,7 +1,7 @@
-CMakeFiles/URLShortner.dir/src/http/router.cpp.o: \
- /home/harshit/code/ftp-server/src/http/router.cpp \
+CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o: \
+ /home/harshit/code/ftp-server/src/middleware/auth.cpp \
  /usr/include/stdc-predef.h \
- /home/harshit/code/ftp-server/include/http/router.h \
+ /home/harshit/code/ftp-server/include/middleware/auth.h \
  /home/harshit/code/ftp-server/include/http/http_request.h \
  /usr/include/c++/14/iostream /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
@@ -142,30 +142,15 @@ CMakeFiles/URLShortner.dir/src/http/router.cpp.o: \
  /usr/include/c++/14/bits/enable_special_members.h \
  /usr/include/c++/14/bits/node_handle.h \
  /usr/include/c++/14/bits/erase_if.h \
- /home/harshit/code/ftp-server/include/http/http_parser.h \
- /home/harshit/code/ftp-server/include/utility/util.h \
- /usr/include/c++/14/algorithm /usr/include/c++/14/bits/stl_algo.h \
- /usr/include/c++/14/bits/algorithmfwd.h \
- /usr/include/c++/14/bits/stl_heap.h \
- /usr/include/c++/14/bits/uniform_int_dist.h \
- /usr/include/c++/14/bits/stl_tempbuf.h \
- /usr/include/c++/14/bits/ranges_algo.h \
- /usr/include/c++/14/bits/ranges_algobase.h \
- /usr/include/c++/14/pstl/glue_algorithm_defs.h \
- /usr/include/c++/14/pstl/execution_defs.h /usr/include/c++/14/vector \
- /usr/include/c++/14/bits/stl_uninitialized.h \
- /usr/include/c++/14/bits/stl_vector.h \
- /usr/include/c++/14/bits/stl_bvector.h \
- /usr/include/c++/14/bits/vector.tcc \
- /home/harshit/code/ftp-server/include/http/http_request.h \
  /home/harshit/code/ftp-server/include/http/http_response.h \
- /usr/include/c++/14/sstream /usr/include/c++/14/bits/sstream.tcc \
- /home/harshit/code/ftp-server/include/http/http_response.h \
- /home/harshit/code/ftp-server/include/handlers/get_register_handler.h \
  /home/harshit/code/ftp-server/include/database/database.h \
  /home/harshit/code/ftp-server/include/core/connection_pool.h \
  /usr/include/c++/14/queue /usr/include/c++/14/deque \
+ /usr/include/c++/14/bits/stl_uninitialized.h \
  /usr/include/c++/14/bits/stl_deque.h /usr/include/c++/14/bits/deque.tcc \
+ /usr/include/c++/14/vector /usr/include/c++/14/bits/stl_vector.h \
+ /usr/include/c++/14/bits/stl_bvector.h \
+ /usr/include/c++/14/bits/vector.tcc /usr/include/c++/14/bits/stl_heap.h \
  /usr/include/c++/14/bits/stl_queue.h /usr/include/c++/14/mutex \
  /usr/include/c++/14/bits/chrono.h /usr/include/c++/14/ratio \
  /usr/include/c++/14/cstdint \
@@ -202,14 +187,20 @@ CMakeFiles/URLShortner.dir/src/http/router.cpp.o: \
  /usr/include/c++/14/bits/atomic_timed_wait.h \
  /usr/include/c++/14/bits/this_thread_sleep.h /usr/include/sys/time.h \
  /usr/include/semaphore.h /usr/include/bits/semaphore.h \
- /usr/include/c++/14/memory \
+ /usr/include/c++/14/memory /usr/include/c++/14/bits/stl_tempbuf.h \
  /usr/include/c++/14/bits/stl_raw_storage_iter.h \
  /usr/include/c++/14/bits/shared_ptr_atomic.h \
  /usr/include/c++/14/backward/auto_ptr.h \
  /usr/include/c++/14/bits/ranges_uninitialized.h \
- /usr/include/c++/14/pstl/glue_memory_defs.h /usr/include/libpq-fe.h \
+ /usr/include/c++/14/bits/ranges_algobase.h \
+ /usr/include/c++/14/pstl/glue_memory_defs.h \
+ /usr/include/c++/14/pstl/execution_defs.h /usr/include/libpq-fe.h \
  /usr/include/postgres_ext.h /usr/include/pg_config_ext.h \
  /usr/include/pg_config_ext-x86_64.h /usr/include/c++/14/chrono \
+ /usr/include/c++/14/sstream /usr/include/c++/14/bits/sstream.tcc \
+ /usr/include/c++/14/bits/stl_algo.h \
+ /usr/include/c++/14/bits/algorithmfwd.h \
+ /usr/include/c++/14/bits/uniform_int_dist.h \
  /usr/include/c++/14/bits/chrono_io.h /usr/include/c++/14/iomanip \
  /usr/include/c++/14/locale \
  /usr/include/c++/14/bits/locale_facets_nonio.h \
@@ -224,26 +215,7 @@ CMakeFiles/URLShortner.dir/src/http/router.cpp.o: \
  /usr/include/c++/14/variant /usr/include/c++/14/bits/unicode.h \
  /usr/include/c++/14/bits/unicode-data.h /usr/include/c++/14/functional \
  /usr/include/c++/14/bits/std_function.h \
- /home/harshit/code/ftp-server/include/bcrypt/bcrypt.h \
- /home/harshit/code/ftp-server/include/handlers/post_register_handler.h \
- /home/harshit/code/ftp-server/include/handlers/get_login_handler.h \
- /home/harshit/code/ftp-server/include/handlers/post_login_handler.h \
- /usr/include/openssl/rand.h /usr/include/openssl/macros.h \
- /usr/include/openssl/opensslconf.h /usr/include/openssl/configuration.h \
- /usr/include/openssl/configuration-x86_64.h \
- /usr/include/openssl/opensslv.h /usr/include/c++/14/stdlib.h \
- /usr/include/openssl/types.h /usr/include/openssl/e_os2.h \
- /usr/include/openssl/safestack.h /usr/include/openssl/stack.h \
- /usr/include/openssl/randerr.h /usr/include/openssl/symhacks.h \
- /usr/include/openssl/cryptoerr_legacy.h /usr/include/openssl/evp.h \
- /usr/include/openssl/core.h /usr/include/openssl/core_dispatch.h \
- /usr/include/openssl/bio.h /usr/include/openssl/crypto.h \
- /usr/include/openssl/cryptoerr.h /usr/include/openssl/bioerr.h \
- /usr/include/openssl/evperr.h /usr/include/openssl/params.h \
- /usr/include/openssl/bn.h /usr/include/openssl/bnerr.h \
- /usr/include/openssl/objects.h /usr/include/openssl/obj_mac.h \
- /usr/include/openssl/asn1.h /usr/include/openssl/asn1err.h \
- /usr/include/openssl/objectserr.h \
- /home/harshit/code/ftp-server/include/handlers/get_home_handler.h \
- /home/harshit/code/ftp-server/include/handlers/post_home_handler.h \
- /home/harshit/code/ftp-server/include/middleware/auth.h
+ /home/harshit/code/ftp-server/include/utility/util.h \
+ /usr/include/c++/14/algorithm /usr/include/c++/14/bits/ranges_algo.h \
+ /usr/include/c++/14/pstl/glue_algorithm_defs.h \
+ /home/harshit/code/ftp-server/include/bcrypt/bcrypt.h

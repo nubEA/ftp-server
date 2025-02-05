@@ -272,5 +272,8 @@ CMakeFiles/URLShortner.dir/src/core/server.cpp.o: \
  /usr/include/openssl/objects.h /usr/include/openssl/obj_mac.h \
  /usr/include/openssl/asn1.h /usr/include/openssl/asn1err.h \
  /usr/include/openssl/objectserr.h \
+ /home/harshit/code/ftp-server/include/handlers/get_home_handler.h \
+ /home/harshit/code/ftp-server/include/handlers/post_home_handler.h \
+ /home/harshit/code/ftp-server/include/middleware/auth.h \
  /home/harshit/code/ftp-server/include/http/http_parser.h \
  /home/harshit/code/ftp-server/include/core/thread_pool.h

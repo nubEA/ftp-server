@@ -293,6 +293,48 @@ CMakeFiles/URLShortner.dir/src/handlers/post_login_handler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/URLShortner.dir/src/handlers/post_login_handler.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harshit/code/ftp-server/src/handlers/post_login_handler.cpp -o CMakeFiles/URLShortner.dir/src/handlers/post_login_handler.cpp.s
 
+CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.o: CMakeFiles/URLShortner.dir/flags.make
+CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.o: /home/harshit/code/ftp-server/src/handlers/get_home_handler.cpp
+CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.o: CMakeFiles/URLShortner.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/harshit/code/ftp-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.o -MF CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.o.d -o CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.o -c /home/harshit/code/ftp-server/src/handlers/get_home_handler.cpp
+
+CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harshit/code/ftp-server/src/handlers/get_home_handler.cpp > CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.i
+
+CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harshit/code/ftp-server/src/handlers/get_home_handler.cpp -o CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.s
+
+CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.o: CMakeFiles/URLShortner.dir/flags.make
+CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.o: /home/harshit/code/ftp-server/src/handlers/post_home_handler.cpp
+CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.o: CMakeFiles/URLShortner.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/harshit/code/ftp-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.o -MF CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.o.d -o CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.o -c /home/harshit/code/ftp-server/src/handlers/post_home_handler.cpp
+
+CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harshit/code/ftp-server/src/handlers/post_home_handler.cpp > CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.i
+
+CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harshit/code/ftp-server/src/handlers/post_home_handler.cpp -o CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.s
+
+CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o: CMakeFiles/URLShortner.dir/flags.make
+CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o: /home/harshit/code/ftp-server/src/middleware/auth.cpp
+CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o: CMakeFiles/URLShortner.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/harshit/code/ftp-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o -MF CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o.d -o CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o -c /home/harshit/code/ftp-server/src/middleware/auth.cpp
+
+CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/harshit/code/ftp-server/src/middleware/auth.cpp > CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.i
+
+CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/harshit/code/ftp-server/src/middleware/auth.cpp -o CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.s
+
 # Object files for target URLShortner
 URLShortner_OBJECTS = \
 "CMakeFiles/URLShortner.dir/src/core/server.cpp.o" \
@@ -310,7 +352,10 @@ URLShortner_OBJECTS = \
 "CMakeFiles/URLShortner.dir/src/bcrypt/bcrypt.cpp.o" \
 "CMakeFiles/URLShortner.dir/src/bcrypt/blowfish.cpp.o" \
 "CMakeFiles/URLShortner.dir/src/handlers/get_login_handler.cpp.o" \
-"CMakeFiles/URLShortner.dir/src/handlers/post_login_handler.cpp.o"
+"CMakeFiles/URLShortner.dir/src/handlers/post_login_handler.cpp.o" \
+"CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.o" \
+"CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.o" \
+"CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o"
 
 # External object files for target URLShortner
 URLShortner_EXTERNAL_OBJECTS =
@@ -331,11 +376,14 @@ URLShortner: CMakeFiles/URLShortner.dir/src/bcrypt/bcrypt.cpp.o
 URLShortner: CMakeFiles/URLShortner.dir/src/bcrypt/blowfish.cpp.o
 URLShortner: CMakeFiles/URLShortner.dir/src/handlers/get_login_handler.cpp.o
 URLShortner: CMakeFiles/URLShortner.dir/src/handlers/post_login_handler.cpp.o
+URLShortner: CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.o
+URLShortner: CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.o
+URLShortner: CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o
 URLShortner: CMakeFiles/URLShortner.dir/build.make
 URLShortner: /usr/lib64/libpq.so
 URLShortner: /usr/lib64/libcrypto.so
 URLShortner: CMakeFiles/URLShortner.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/harshit/code/ftp-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable URLShortner"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/harshit/code/ftp-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable URLShortner"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/URLShortner.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

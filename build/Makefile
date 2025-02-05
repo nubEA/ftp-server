@@ -273,6 +273,30 @@ src/database/database.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/database/database.cpp.s
 .PHONY : src/database/database.cpp.s
 
+src/handlers/get_home_handler.o: src/handlers/get_home_handler.cpp.o
+.PHONY : src/handlers/get_home_handler.o
+
+# target to build an object file
+src/handlers/get_home_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.o
+.PHONY : src/handlers/get_home_handler.cpp.o
+
+src/handlers/get_home_handler.i: src/handlers/get_home_handler.cpp.i
+.PHONY : src/handlers/get_home_handler.i
+
+# target to preprocess a source file
+src/handlers/get_home_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.i
+.PHONY : src/handlers/get_home_handler.cpp.i
+
+src/handlers/get_home_handler.s: src/handlers/get_home_handler.cpp.s
+.PHONY : src/handlers/get_home_handler.s
+
+# target to generate assembly for a file
+src/handlers/get_home_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/get_home_handler.cpp.s
+.PHONY : src/handlers/get_home_handler.cpp.s
+
 src/handlers/get_login_handler.o: src/handlers/get_login_handler.cpp.o
 .PHONY : src/handlers/get_login_handler.o
 
@@ -320,6 +344,30 @@ src/handlers/get_register_handler.s: src/handlers/get_register_handler.cpp.s
 src/handlers/get_register_handler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/get_register_handler.cpp.s
 .PHONY : src/handlers/get_register_handler.cpp.s
+
+src/handlers/post_home_handler.o: src/handlers/post_home_handler.cpp.o
+.PHONY : src/handlers/post_home_handler.o
+
+# target to build an object file
+src/handlers/post_home_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.o
+.PHONY : src/handlers/post_home_handler.cpp.o
+
+src/handlers/post_home_handler.i: src/handlers/post_home_handler.cpp.i
+.PHONY : src/handlers/post_home_handler.i
+
+# target to preprocess a source file
+src/handlers/post_home_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.i
+.PHONY : src/handlers/post_home_handler.cpp.i
+
+src/handlers/post_home_handler.s: src/handlers/post_home_handler.cpp.s
+.PHONY : src/handlers/post_home_handler.s
+
+# target to generate assembly for a file
+src/handlers/post_home_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.s
+.PHONY : src/handlers/post_home_handler.cpp.s
 
 src/handlers/post_login_handler.o: src/handlers/post_login_handler.cpp.o
 .PHONY : src/handlers/post_login_handler.o
@@ -489,6 +537,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/middleware/auth.o: src/middleware/auth.cpp.o
+.PHONY : src/middleware/auth.o
+
+# target to build an object file
+src/middleware/auth.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o
+.PHONY : src/middleware/auth.cpp.o
+
+src/middleware/auth.i: src/middleware/auth.cpp.i
+.PHONY : src/middleware/auth.i
+
+# target to preprocess a source file
+src/middleware/auth.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.i
+.PHONY : src/middleware/auth.cpp.i
+
+src/middleware/auth.s: src/middleware/auth.cpp.s
+.PHONY : src/middleware/auth.s
+
+# target to generate assembly for a file
+src/middleware/auth.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.s
+.PHONY : src/middleware/auth.cpp.s
+
 src/utility/util.o: src/utility/util.cpp.o
 .PHONY : src/utility/util.o
 
@@ -540,12 +612,18 @@ help:
 	@echo "... src/database/database.o"
 	@echo "... src/database/database.i"
 	@echo "... src/database/database.s"
+	@echo "... src/handlers/get_home_handler.o"
+	@echo "... src/handlers/get_home_handler.i"
+	@echo "... src/handlers/get_home_handler.s"
 	@echo "... src/handlers/get_login_handler.o"
 	@echo "... src/handlers/get_login_handler.i"
 	@echo "... src/handlers/get_login_handler.s"
 	@echo "... src/handlers/get_register_handler.o"
 	@echo "... src/handlers/get_register_handler.i"
 	@echo "... src/handlers/get_register_handler.s"
+	@echo "... src/handlers/post_home_handler.o"
+	@echo "... src/handlers/post_home_handler.i"
+	@echo "... src/handlers/post_home_handler.s"
 	@echo "... src/handlers/post_login_handler.o"
 	@echo "... src/handlers/post_login_handler.i"
 	@echo "... src/handlers/post_login_handler.s"
@@ -567,6 +645,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/middleware/auth.o"
+	@echo "... src/middleware/auth.i"
+	@echo "... src/middleware/auth.s"
 	@echo "... src/utility/util.o"
 	@echo "... src/utility/util.i"
 	@echo "... src/utility/util.s"
