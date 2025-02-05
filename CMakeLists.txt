@@ -39,6 +39,7 @@ set(SOURCES
     ${SRC_DIR}/bcrypt/bcrypt.cpp
     ${SRC_DIR}/bcrypt/blowfish.cpp
     ${SRC_DIR}/handlers/get_login_handler.cpp
+    ${SRC_DIR}/handlers/post_login_handler.cpp
 )
 
 # Add the executable

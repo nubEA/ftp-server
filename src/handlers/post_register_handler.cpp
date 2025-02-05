@@ -3,7 +3,7 @@
 void PostRegisterHandler::post_register_handler(HttpRequest& req, HttpResponse& res, Database& db) {
     std::string body = req.get_body();
     // Get username and password from body
-    User user = get_credentials(body, res); // Pass res
+    struct User user = get_credentials(body, res); // Pass res
 
     if (!handle_validation(user.username, user.password, db, res)) return; // Pass res
     if (!create_user(user.username, user.password, db, res)) return; // Pass res
@@ -15,8 +15,8 @@ bool PostRegisterHandler::is_password_valid(const std::string& password) {
     return Util::has_upper_case(password) && Util::has_lower_case(password) && Util::has_digit(password);
 }
 
-void PostRegisterHandler::handle_invalid_credential_error(HttpResponse& res) {
-    std::string errorMessage = "Invalid username or password, make sure: username contains alphanumeric and underscores only in range [4,20] and passwords have at least 1 upper case, 1 lower case, 1 digit and min length of 8 chars and max 64 chars.";
+void PostRegisterHandler::handle_invalid_credential_error(HttpResponse& res, const std::string& message){
+    std::string errorMessage = message;
 
     // Redirect to the /register page
     res.set_status(303, "See Other");
@@ -44,11 +44,13 @@ PostRegisterHandler::User PostRegisterHandler::get_credentials(const std::string
         return User{}; // Return an empty User struct
     }
 
-    User user;
+    struct User user;
     // Extracting username and password
     user.username = body.substr(user_start, seperator_pos - user_start);
     user.password = body.substr(pass_start);
-
+    user.username = Util::url_decode(user.username);
+    user.password = Util::url_decode(user.password);
+    
     std::cout << "Username and password extracted from the body\n";
 
     return user;
@@ -80,13 +82,25 @@ bool PostRegisterHandler::handle_validation(const std::string& username, const s
     bool isPassValid = is_password_valid(password);
 
     // Log whether username is invalid or password
-    if (!isUserNameValid) std::cout << "Username not valid\n";
-    if (!isPassValid) std::cout << "Password not valid\n";
-
-    if (!isUserNameValid || !isPassValid) {
-        handle_invalid_credential_error(res);
+    if (countOfnames){
+        std::cout << "Username not valid\n";
+        std::string message = "User name already exists!";
+        handle_invalid_credential_error(res,message);
         return false;
     }
+    else if(!isUserNameValid){
+        std::cout << "Invalid username\n";
+        std::string message = "Invalid Username format, username can be alphanumeric, with underscores, hyphen and must be less than 32 characters";
+        handle_invalid_credential_error(res,message);
+        return false;
+    }
+    if (!isPassValid){ 
+        std::cout << "Password not valid\n";
+        std::string message = "Password not valid! Password must be atleast 8 characters long and at most 64 characters, with atleast 1 upper case, 1 lower case and 1 digit";
+        handle_invalid_credential_error(res,message);
+        return false;
+    }
+
     return true;
 }
 

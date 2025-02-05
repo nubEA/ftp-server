@@ -20,10 +20,10 @@ private:
         std::string password{};
     };
 
-    static void handle_invalid_credential_error(HttpResponse& res);
+    static void handle_invalid_credential_error(HttpResponse& res, const std::string& message);
     static bool is_password_valid(const std::string& password); 
     static void handle_success(HttpResponse& res);
-    static User get_credentials(const std::string& body, HttpResponse& res); 
+    static struct User get_credentials(const std::string& body, HttpResponse& res); 
     static bool handle_validation(const std::string& username, const std::string& password, Database& db, HttpResponse& res); 
     static bool create_user(const std::string& username, const std::string& password, Database& db, HttpResponse& res); 
 };

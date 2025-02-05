@@ -321,6 +321,30 @@ src/handlers/get_register_handler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/get_register_handler.cpp.s
 .PHONY : src/handlers/get_register_handler.cpp.s
 
+src/handlers/post_login_handler.o: src/handlers/post_login_handler.cpp.o
+.PHONY : src/handlers/post_login_handler.o
+
+# target to build an object file
+src/handlers/post_login_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/post_login_handler.cpp.o
+.PHONY : src/handlers/post_login_handler.cpp.o
+
+src/handlers/post_login_handler.i: src/handlers/post_login_handler.cpp.i
+.PHONY : src/handlers/post_login_handler.i
+
+# target to preprocess a source file
+src/handlers/post_login_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/post_login_handler.cpp.i
+.PHONY : src/handlers/post_login_handler.cpp.i
+
+src/handlers/post_login_handler.s: src/handlers/post_login_handler.cpp.s
+.PHONY : src/handlers/post_login_handler.s
+
+# target to generate assembly for a file
+src/handlers/post_login_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/handlers/post_login_handler.cpp.s
+.PHONY : src/handlers/post_login_handler.cpp.s
+
 src/handlers/post_register_handler.o: src/handlers/post_register_handler.cpp.o
 .PHONY : src/handlers/post_register_handler.o
 
@@ -522,6 +546,9 @@ help:
 	@echo "... src/handlers/get_register_handler.o"
 	@echo "... src/handlers/get_register_handler.i"
 	@echo "... src/handlers/get_register_handler.s"
+	@echo "... src/handlers/post_login_handler.o"
+	@echo "... src/handlers/post_login_handler.i"
+	@echo "... src/handlers/post_login_handler.s"
 	@echo "... src/handlers/post_register_handler.o"
 	@echo "... src/handlers/post_register_handler.i"
 	@echo "... src/handlers/post_register_handler.s"

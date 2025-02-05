@@ -10,6 +10,8 @@ void GetLoginHandler::get_login_handler(HttpRequest& req, HttpResponse& res, Dat
     if(req.has_specific_query_param("userCreated")){
         userCreated = "User created successfully. Login";
     }
+    std::string errorMessage{};
+    
 
     ///Sending the HTML page as response body
     std::string body =   R"(<!DOCTYPE html>
