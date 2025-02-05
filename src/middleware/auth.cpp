@@ -23,7 +23,7 @@ bool Auth::handle_authentication(HttpRequest& req, HttpResponse& res, Database& 
 
     std::vector<std::vector<std::string>> results = db.fetch_results(stmtName, params, paramLen, paramFormat, nParams);
     
-    if (results.empty() || isExpired(results[0][1])) {
+    if (results.empty() || isExpired(results[0][1],hashedToken,db)) {
         handle_not_logged_in(req, res, db);
         return false;
     }
@@ -50,7 +50,7 @@ std::string Auth::extract_token_from_cookie(const std::string& cookie_header) {
     return "";
 }
 
-bool Auth::isExpired(std::string& expiresAt) {
+bool Auth::isExpired(std::string& expiresAt, std::string& hashedToken, Database& db) {
     std::tm tm = {};
     std::istringstream ss(expiresAt);
     ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
@@ -63,5 +63,19 @@ bool Auth::isExpired(std::string& expiresAt) {
     auto expiration_time = std::chrono::system_clock::from_time_t(time);
 
     auto now = std::chrono::system_clock::now();
+
+    if(expiration_time < now)
+    {
+        std::cout << "Cookie has expired\n";
+        std::string stmtName = "delete_refresh_token";
+        const char* params[] = {hashedToken.c_str()};
+        int paramLen[] = {static_cast<int>(hashedToken.length())};
+        int paramFormat[] = {0};
+        int nParams = 1;
+        if(db.execute_query(stmtName,params,paramLen,paramFormat,nParams)){
+            std::cout << "Deleted Expired cookie\n";
+        }
+    }
+
     return expiration_time < now;
 }
