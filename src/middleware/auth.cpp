@@ -1,29 +1,36 @@
 #include "auth.h"
 
 bool Auth::handle_authentication(HttpRequest& req, HttpResponse& res, Database& db){
-    if(!req.has_header("Cookie")){
+    if(!req.has_header("cookie")){
+        std::cout << "No cookie header found\n";
         handle_not_logged_in(req, res, db);
         return false;
     }
+    std::string token = req.get_token_cookie();
+    std::cout << "Extracted token from cookie: " << token << '\n';
 
-    std::string cookie_header = req.get_specific_header("Cookie");
-    std::string token = extract_token_from_cookie(cookie_header);
     if (token.empty()) {
+        std::cout << "Token is empty\n";
         handle_not_logged_in(req, res, db);
         return false;
     }
-
-    std::string hashedToken = bcrypt::generateHash(token);
 
     std::string stmtName = "get_refresh_token";
-    const char* params[] = {hashedToken.c_str()};
-    int paramLen[] = {static_cast<int>(hashedToken.length())};
+    const char* params[] = {token.c_str()};
+    int paramLen[] = {static_cast<int>(token.length())};
     int paramFormat[] = {0};
     int nParams = 1;
 
     std::vector<std::vector<std::string>> results = db.fetch_results(stmtName, params, paramLen, paramFormat, nParams);
-    
-    if (results.empty() || isExpired(results[0][1],hashedToken,db)) {
+
+    if (results.empty()) {
+        std::cout << "No results found for the token\n";
+        handle_not_logged_in(req, res, db);
+        return false;
+    }
+
+    if (isExpired(results[0][1], token, db)) {
+        std::cout << "Token is expired\n";
         handle_not_logged_in(req, res, db);
         return false;
     }
@@ -36,21 +43,35 @@ void Auth::handle_not_logged_in(HttpRequest& req, HttpResponse& res, Database& d
     res.set_header("Location", "/login");
 }
 
-std::string Auth::extract_token_from_cookie(const std::string& cookie_header) {
-    std::string token_prefix = "token=";
-    size_t start_pos = cookie_header.find(token_prefix);
-    if (start_pos != std::string::npos) {
-        start_pos += token_prefix.length();
-        size_t end_pos = cookie_header.find(";", start_pos);
-        if (end_pos == std::string::npos) {
-            end_pos = cookie_header.length();
-        }
-        return cookie_header.substr(start_pos, end_pos - start_pos);
-    }
-    return "";
+std::string Auth::get_user_id(const std::string& token, Database& db)
+{
+    std::string stmtName = "get_refresh_token";
+    const char* params[] = {token.c_str()};
+    int paramLen[] = {static_cast<int>(token.length())};
+    int paramFormat[] = {0};
+    int nParams = 1;
+    auto results = db.fetch_results(stmtName,params,paramLen,paramFormat,nParams);
+    
+    std::cout << "Returning user id\n";
+
+    return results[0][0];
 }
 
-bool Auth::isExpired(std::string& expiresAt, std::string& hashedToken, Database& db) {
+void Auth::remove_cookie_db_entry(const std::string& userId, Database& db){
+    std::string stmtName = "delete_all_tokens_for_user";
+    const char* params[] = {userId.c_str()};
+    int paramLen[] = {static_cast<int>(userId.length())};
+    int paramFormat[] = {0};
+    int nParams = 1;
+    if(db.execute_query(stmtName,params,paramLen,paramFormat,nParams)){
+        std::cout << "User tokens removed successfully\n";
+    }
+    else{
+        std::cout << "Error occurred during deleting tokens from db\n";
+    }
+}
+
+bool Auth::isExpired(std::string& expiresAt, std::string& token, Database& db) {
     std::tm tm = {};
     std::istringstream ss(expiresAt);
     ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
@@ -67,14 +88,15 @@ bool Auth::isExpired(std::string& expiresAt, std::string& hashedToken, Database&
     if(expiration_time < now)
     {
         std::cout << "Cookie has expired\n";
-        std::string stmtName = "delete_refresh_token";
-        const char* params[] = {hashedToken.c_str()};
-        int paramLen[] = {static_cast<int>(hashedToken.length())};
-        int paramFormat[] = {0};
-        int nParams = 1;
-        if(db.execute_query(stmtName,params,paramLen,paramFormat,nParams)){
-            std::cout << "Deleted Expired cookie\n";
-        }
+        remove_cookie_db_entry(get_user_id(token,db),db);
+        // std::string stmtName = "delete_refresh_token";
+        // const char* params[] = {token.c_str()};
+        // int paramLen[] = {static_cast<int>(token.length())};
+        // int paramFormat[] = {0};
+        // int nParams = 1;
+        // if(db.execute_query(stmtName,params,paramLen,paramFormat,nParams)){
+        //     std::cout << "Deleted Expired cookie\n";
+        // }
     }
 
     return expiration_time < now;

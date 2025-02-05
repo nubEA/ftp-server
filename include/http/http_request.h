@@ -19,7 +19,8 @@ public:
     std::string get_path() const;                                                   // Returns the request path (e.g., "/login")
     std::string get_unparsed_query_params() const;                                  // Returns the query param (eg, "/register?error=...") 
     std::string get_query_param(const std::string& key) const;                      // Returns the a specific value for a key param
-    std::unordered_map<std::string,std::string> get_query_map() const;
+    std::unordered_map<std::string,std::string> get_query_map() const;              // Returns map of query params
+    std::string get_token_cookie() const;                                           // Returns token 
 
     // Setters
     void set_method(const std::string& meth);                                       // Sets the HTTP method
@@ -30,6 +31,7 @@ public:
     void set_specific_header(const std::string& key, const std::string& value);     // Sets the single header key-value pair
     void set_unparsed_query_string(const std::string& qString);                     // Sets the query string
     void set_specific_query_param(const std::string& key, const std::string& value);// Sets the single query param pair
+    void set_token_cookie(const std::string& token);                                // Sets the token
 
     // Utilities
     void clear();                                                                   // Clears all fields of the HTTP request
@@ -43,6 +45,7 @@ private:
     std::string path;                                                               // Stores the request path (e.g., "/login")
     std::string http_version;                                                       // Stores the HTTP version (e.g., "HTTP/1.1")
     std::string body;                                                               // Stores the request body
+    std::string token;                                                              // Stores the token from cookie header
     std::unordered_map<std::string, std::string> header;                            // Stores headers as key-value pairs
     std::string unparsedQuery;                                                      // Stores the query (everything after "?")
     std::unordered_map<std::string, std::string> queryParams;                       // Stores query params as key-value pairs

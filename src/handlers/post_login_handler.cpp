@@ -42,13 +42,10 @@ void PostLoginHandler::handle_session_token(std::string& username, Database& db,
     // Set the cookie with the generated token and expiration time
     set_cookie(token, expiresAt, res);
 
-    // Hashing the token to make storage in the db more secure
-    std::string hashedToken = bcrypt::generateHash(token);
-
     // Populating all the params needed to execute the query
     std::string stmtName = "insert_refresh_token";
-    const char* params[] = {id.c_str(), hashedToken.c_str(), expiresAt.c_str()};
-    int paramLen[] = {static_cast<int>(id.length()), static_cast<int>(hashedToken.length()), static_cast<int>(expiresAt.length())};
+    const char* params[] = {id.c_str(), token.c_str(), expiresAt.c_str()};
+    int paramLen[] = {static_cast<int>(id.length()), static_cast<int>(token.length()), static_cast<int>(expiresAt.length())};
     int paramFormat[] = {0, 0, 0};
     int nParams = 3;
 

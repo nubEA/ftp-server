@@ -42,6 +42,11 @@ std::string HttpRequest::get_unparsed_query_params() const{
     return unparsedQuery;
 }
 
+//Gets the token for auth purposes
+std::string HttpRequest::get_token_cookie() const{
+    return token;
+}
+
 //Gets the value corresponding to a key
 std::string HttpRequest::get_query_param(const std::string& key) const
 {
@@ -96,6 +101,12 @@ void HttpRequest::set_unparsed_query_string(const std::string& qString)
 void HttpRequest::set_specific_query_param(const std::string& key, const std::string& value)
 {
     queryParams[key] = value;
+}
+
+//Set the token
+void HttpRequest::set_token_cookie(const std::string& tokenFromCookie)
+{
+    token = tokenFromCookie;
 }
 
 //Clear the http request obj

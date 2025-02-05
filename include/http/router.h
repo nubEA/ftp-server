@@ -10,6 +10,7 @@
 #include "post_login_handler.h"
 #include "get_home_handler.h"
 #include "post_home_handler.h"
+#include "post_logout_handler.h"
 #include "auth.h"
 #include "database.h"
 class Router{
@@ -23,6 +24,9 @@ class Router{
         void handle_get_home(HttpRequest& req, HttpResponse& res, Database& db);
         void handle_post_home(HttpRequest& req, HttpResponse& res, Database& db);
         void handle_not_found(HttpRequest& req, HttpRequest& res, Database& db);
+        void handle_post_logout(HttpRequest& req, HttpResponse& res, Database& db);
+        void handle_redirect(HttpResponse& res, const std::string& location);
+
 };
 
 #endif

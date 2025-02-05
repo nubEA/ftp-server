@@ -21,6 +21,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/URLShortner.dir/src/handlers/post_home_handler.cpp.o.d"
   "CMakeFiles/URLShortner.dir/src/handlers/post_login_handler.cpp.o"
   "CMakeFiles/URLShortner.dir/src/handlers/post_login_handler.cpp.o.d"
+  "CMakeFiles/URLShortner.dir/src/handlers/post_logout_handler.cpp.o"
+  "CMakeFiles/URLShortner.dir/src/handlers/post_logout_handler.cpp.o.d"
   "CMakeFiles/URLShortner.dir/src/handlers/post_register_handler.cpp.o"
   "CMakeFiles/URLShortner.dir/src/handlers/post_register_handler.cpp.o.d"
   "CMakeFiles/URLShortner.dir/src/http/http_parser.cpp.o"

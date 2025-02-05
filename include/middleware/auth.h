@@ -18,7 +18,8 @@ class Auth{
     private:
         static bool isExpired(std::string& expiresAt, std::string& hashedToken, Database& db);
         static void handle_not_logged_in(HttpRequest& req, HttpResponse& res, Database& db);
-        static std::string extract_token_from_cookie(const std::string& cookie_header);
+        static void remove_cookie_db_entry(const std::string& userId, Database& db);
+        static std::string get_user_id(const std::string& token, Database& db);
 };
 
 #endif

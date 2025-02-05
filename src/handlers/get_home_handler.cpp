@@ -21,6 +21,10 @@ void GetHomeHandler::get_home_handler(HttpRequest& req, HttpResponse& res, Datab
                                     <br><br>
                                     <button type="submit" value="upload">Upload File</button>
                                 </form>
+                                <br><br>
+                                <form method="POST" action="/logout">
+                                    <button type="submit" value="logout">Log Out</button>
+                                </form>
                             </body>
                             </html>)";
 

@@ -27,9 +27,14 @@ HttpRequest HttpParser::parse(const std::string& raw_request){
 
     HttpRequest req;
 
-    parse_request_line(headerLines[0],req);                     //The first line contains method, path, http version
-    parse_headers(headerLines,req);                             //Store the rest of the header part as key value pairs
-    req.set_body(bodyPart);                                     //Store the body part as it is
+    parse_request_line(headerLines[0],req);                                                         //The first line contains method, path, http version
+    parse_headers(headerLines,req);                                                                 //Store the rest of the header part as key value pairs
+    if(req.has_header("cookie")){
+        std::cout << "Started parsing cookie token!!!\n";
+        parse_token_from_header(req.get_specific_header("cookie"),req);    //Extract and store token from the cookie header
+    }
+    else req.set_token_cookie(std::string());
+    req.set_body(bodyPart);                                                                         //Store the body part as it is
     
     return req;
 }
@@ -69,6 +74,24 @@ std::vector<std::string> HttpParser::split_lines(const std::string& raw)
 
     return headerLines;
 }
+
+void HttpParser::parse_token_from_header(const std::string& cookie_header, HttpRequest& req)
+{
+    std::cout << "This is the cookie header: " << cookie_header << '\n';
+    std::string token_prefix = "token=";
+    size_t start_pos = cookie_header.find(token_prefix);
+    if (start_pos != std::string::npos) {
+        start_pos += token_prefix.length();
+        size_t end_pos = cookie_header.find(";", start_pos);
+        if (end_pos == std::string::npos) {
+            end_pos = cookie_header.length();
+        }
+        req.set_token_cookie(cookie_header.substr(start_pos, end_pos - start_pos));
+    }
+    else req.set_token_cookie(std::string());
+    std::cout << "Cookie Token set!\n";
+}
+
 
 void HttpParser::parse_query_params(const std::string& path, HttpRequest& req){
 
@@ -144,6 +167,7 @@ void HttpParser::parse_headers(const std::vector<std::string>& headerPart, HttpR
 
     for(std::size_t i = 1; i < headerPart.size(); ++i)
     {   
+        // std::cout << headerPart[i] << "\n\n";
         std::size_t pos = headerPart[i].find(":");
         if(pos == std::string::npos){
             std::cout << "Missing colon(:) on line number " << i+1 << std::endl;

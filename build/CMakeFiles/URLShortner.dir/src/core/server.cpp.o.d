@@ -274,6 +274,7 @@ CMakeFiles/URLShortner.dir/src/core/server.cpp.o: \
  /usr/include/openssl/objectserr.h \
  /home/harshit/code/ftp-server/include/handlers/get_home_handler.h \
  /home/harshit/code/ftp-server/include/handlers/post_home_handler.h \
+ /home/harshit/code/ftp-server/include/handlers/post_logout_handler.h \
  /home/harshit/code/ftp-server/include/middleware/auth.h \
  /home/harshit/code/ftp-server/include/http/http_parser.h \
  /home/harshit/code/ftp-server/include/core/thread_pool.h

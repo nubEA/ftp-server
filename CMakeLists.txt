@@ -44,6 +44,7 @@ set(SOURCES
     ${SRC_DIR}/handlers/get_home_handler.cpp
     ${SRC_DIR}/handlers/post_home_handler.cpp
     ${SRC_DIR}/middleware/auth.cpp
+    ${SRC_DIR}/handlers/post_logout_handler.cpp
 )
 
 # Add the executable
