@@ -34,9 +34,143 @@ HttpRequest HttpParser::parse(const std::string& raw_request){
         parse_token_from_header(req.get_specific_header("cookie"),req);    //Extract and store token from the cookie header
     }
     else req.set_token_cookie(std::string());
-    req.set_body(bodyPart);                                                                         //Store the body part as it is
+    //Check if http requests contains file data
+    if(req.has_header("content-type") && req.get_specific_header("content-type").starts_with("multipart/form-data")){
+        // std::cout << "###HALOOO###\n";
+        parse_boundary_string(req.get_specific_header("content-type"), req);
+        parse_multipart_body(bodyPart, req);
+    }   
+    else{
+        std::cout << "Setting body for non-multipart form data\n";        
+        req.set_body(bodyPart);                                                                         //Store the body part as it is
+    }
     
     return req;
+}
+
+//Reference body
+// ------WebKitFormBoundaryXYZ
+// Content-Disposition: form-data; name="username"
+
+// JohnDoe
+// ------WebKitFormBoundaryXYZ
+// Content-Disposition: form-data; name="file"; filename="example.txt"
+// Content-Type: text/plain
+
+// (Contents of the file)
+// ------WebKitFormBoundaryXYZ--
+
+//Parse the body
+void HttpParser::parse_multipart_body(const std::string& body, HttpRequest& req)
+{
+    // Define the boundary (with the prefix '--' as per multipart format)
+    std::string boundary = "--" + req.get_boundary_string();
+    size_t pos = 0;
+
+    // Process each part in the body, delimited by the boundary
+    while((pos = body.find(boundary, pos)) != std::string::npos)
+    {
+        // Move past the boundary length
+        pos += boundary.length();
+        std::cout << "Found boundary, moving past it. New position: " << pos << std::endl;
+
+        // If this is the last boundary (ends with "--"), exit
+        if(body.compare(pos, 2, "--") == 0) {
+            std::cout << "Last boundary detected. Exiting." << std::endl;
+            break;
+        }
+
+        // Skip the newline after the boundary
+        if(body.compare(pos, 2, "\r\n") == 0) pos += 2;
+        
+        // Find the end of the headers section (separated by "\r\n\r\n")
+        size_t header_end = body.find("\r\n\r\n", pos);
+        if(header_end == std::string::npos) continue;  // Continue if no header section found
+        std::string headers = body.substr(pos, header_end - pos);
+
+        std::cout << "Headers section extracted:\n" << headers << std::endl;
+
+        // Move position to where content starts (after the headers section)
+        pos = header_end + 4;
+
+        // Find the next boundary or the end of the body (for the current content)
+        size_t content_end = body.find(boundary, pos);
+        if(content_end == std::string::npos) content_end = body.length();
+        std::string content = body.substr(pos, content_end - pos);
+
+        std::cout << "Content extracted. Content size: " << content.size() << std::endl;
+        std::cout << "\nContent: " << content << '\n' << std::endl;
+
+        // Process the headers into key-value pairs
+        std::stringstream stream(headers);
+        std::unordered_map<std::string, std::string> header_map;
+        std::string line{};
+        while(std::getline(stream, line))
+        {
+            size_t colonPos = line.find(":");
+            if(colonPos == std::string::npos) continue;     // Skip lines without a colon
+            std::string key = line.substr(0, colonPos);
+            key = Util::to_lower(key);                      // Normalize header keys to lowercase
+            header_map[key] = line.substr(colonPos + 1);
+
+            std::cout << "Header parsed: " << key << ": " << header_map[key] << std::endl;
+        }
+
+        // Check if the Content-Disposition header exists
+        if(header_map.count("content-disposition"))
+        {
+            std::string value = header_map["content-disposition"];
+            std::cout << "Found Content-Disposition header: " << value << std::endl;
+
+            // Extract the 'name' and 'filename' from the Content-Disposition value
+            size_t namePos = value.find("name=\"");
+            std::string filename, name;
+            if(namePos != std::string::npos)
+            {   
+                namePos += 6;       // Skip past 'name="'
+                size_t nameEnd = value.find("\"", namePos);
+                name = value.substr(namePos, nameEnd - namePos);
+                name = Util::trim(name);
+                std::cout << "Extracted field name: " << name << std::endl;
+            }
+
+            size_t filenamePos = value.find("filename=\"");
+            if(filenamePos != std::string::npos)
+            {   
+                filenamePos += 10;  // Skip past 'filename="'
+                size_t filenameEnd = value.find("\"", filenamePos);
+                filename = value.substr(filenamePos, filenameEnd - filenamePos);
+                filename = Util::trim(filename);
+                std::cout << "Extracted filename: " << filename << std::endl;
+            }
+
+            // If a filename is provided, it's a file upload
+            if(!filename.empty())
+            {
+                std::cout << "Processing file upload: " << filename << std::endl;
+                req.add_file(name, filename, content);
+            }
+            else  // Otherwise, it's a regular form field
+            {
+                std::cout << "Processing form field: " << name << std::endl;
+                req.set_specific_form_field(name, content);
+            }
+        }
+        // Move position to the next part (content section ends here)
+        pos = content_end;
+    }
+}
+
+//Content-Type: multipart/form-data; boundary=....
+void HttpParser::parse_boundary_string(const std::string& header, HttpRequest& req)
+{
+    size_t startPos = header.find("boundary=");
+    if(startPos == std::string::npos) req.set_boundary_string(std::string());
+    else{
+        startPos += std::string("boundary=").length();
+        std::string boundary = header.substr(startPos);
+        req.set_boundary_string(boundary);
+    }
 }
 
 //Splits the header part into seperate lines, like the method line, other headers

@@ -10,6 +10,7 @@ HttpResponse Router::handle_request(HttpRequest& req, Database& db){
     else if(req.get_method() == "POST"  && req.get_path().starts_with("/login"))    handle_post_login(req, res,db);
     else if(req.get_method() == "POST"  && req.get_path().starts_with("/logout"))   handle_post_logout(req,res,db);
     else if(req.get_method() == "GET"   && req.get_path().starts_with("/"))         handle_get_home(req,res,db);
+    else handle_get_home(req,res,db);
 
     return res;
 }

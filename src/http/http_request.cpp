@@ -57,6 +57,39 @@ std::unordered_map<std::string,std::string> HttpRequest::get_query_map() const{
     return queryParams;
 }
 
+//Gets the value of boundary string
+std::string HttpRequest::get_boundary_string() const{
+    return boundaryString;
+}
+
+//Return map of name to file struct
+std::unordered_map<std::string, HttpRequest::UploadedFile> HttpRequest::get_all_files() const{
+    return uploaded_files;
+}
+
+// Return specifc form field value
+std::string HttpRequest::get_specific_form_field(const std::string& key) const
+{
+    if(form_fields.find(key) == form_fields.end()) return "";
+    return form_fields.at(key);
+}
+
+std::string HttpRequest::get_file_name(const std::string& field_name) const
+{
+    if (has_file(field_name)) return uploaded_files.at(field_name).filename;
+    return "";
+}
+
+std::string HttpRequest::get_file_content(const std::string& field_name) const {
+    if (has_file(field_name)) return uploaded_files.at(field_name).content;
+    return "";
+}
+
+size_t HttpRequest::get_file_size(const std::string& field_name) const {
+    if (has_file(field_name)) return uploaded_files.at(field_name).size;
+    return 0;
+}
+
 //Sets the http method
 void HttpRequest::set_method(const std::string& meth)
 {
@@ -109,6 +142,20 @@ void HttpRequest::set_token_cookie(const std::string& tokenFromCookie)
     token = tokenFromCookie;
 }
 
+//Set the boundary string which seperates the body in multipart http request
+void HttpRequest::set_boundary_string(const std::string& boundary)
+{
+    boundaryString = boundary;
+}
+
+void HttpRequest::set_specific_form_field(const std::string& field_name, const std::string& value) {
+    form_fields[field_name] = value;
+}
+
+void HttpRequest::add_file(const std::string& field_name, const std::string& filename, const std::string& content) {
+    uploaded_files[field_name] = {filename, content, content.size()};
+}
+
 //Clear the http request obj
 void HttpRequest::clear(){
     method.clear();
@@ -140,4 +187,17 @@ bool HttpRequest::has_query_params() const
 bool HttpRequest::has_specific_query_param(const std::string& key) const
 {
     return queryParams.count(key);
+}
+
+//Check if boundary string is present or not
+bool HttpRequest::has_boundary_string() const{
+    return !boundaryString.empty();
+}
+
+bool HttpRequest::has_form_field(const std::string& field_name) const {
+    return form_fields.find(field_name) != form_fields.end();
+}
+
+bool HttpRequest::has_file(const std::string& field_name) const {
+    return uploaded_files.find(field_name) != uploaded_files.end();
 }

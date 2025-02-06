@@ -23,6 +23,8 @@ private:
     static void parse_headers(const std::vector<std::string>& headerPart, HttpRequest& req);    // Parses headers into key-value pairs
     static void parse_query_params(const std::string& path, HttpRequest& req);                  // Parses the query params from path string if available
     static void parse_token_from_header(const std::string& cookie_header, HttpRequest& req);    // Parses cookie heaader to get token value
+    static void parse_boundary_string(const std::string& header, HttpRequest& req);             // Parses boundary string from content-type header
+    static void parse_multipart_body(const std::string& bodyPart, HttpRequest& req);
 
 };
 
