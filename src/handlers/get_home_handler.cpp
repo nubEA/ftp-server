@@ -19,6 +19,9 @@ void GetHomeHandler::get_home_handler(HttpRequest& req, HttpResponse& res, Datab
                                     <br><br>
                                     <input id="file-upload" type="file" name="file" accept=".txt, .jpg, .png" required>
                                     <br><br>
+                                    <input type="checkbox" id="public-checkbox" name="public">
+                                    <label for="public-checkbox">Make Public</label>
+                                    <br><br>
                                     <button type="submit" value="upload">Upload File</button>
                                 </form>
                                 <br><br>

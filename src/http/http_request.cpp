@@ -67,6 +67,10 @@ std::unordered_map<std::string, HttpRequest::UploadedFile> HttpRequest::get_all_
     return uploaded_files;
 }
 
+std::unordered_map<std::string, HttpRequest::UploadedFile>& HttpRequest::get_all_files_ref(){
+    return uploaded_files;
+}   
+
 // Return specifc form field value
 std::string HttpRequest::get_specific_form_field(const std::string& key) const
 {
@@ -79,6 +83,12 @@ std::string HttpRequest::get_file_name(const std::string& field_name) const
     if (has_file(field_name)) return uploaded_files.at(field_name).filename;
     return "";
 }
+
+std::string HttpRequest::get_file_perms(const std::string& field_name) const{
+    if (has_file(field_name)) return uploaded_files.at(field_name).perms;
+    return "";
+}
+
 
 std::string HttpRequest::get_file_content(const std::string& field_name) const {
     if (has_file(field_name)) return uploaded_files.at(field_name).content;
@@ -152,8 +162,8 @@ void HttpRequest::set_specific_form_field(const std::string& field_name, const s
     form_fields[field_name] = value;
 }
 
-void HttpRequest::add_file(const std::string& field_name, const std::string& filename, const std::string& content) {
-    uploaded_files[field_name] = {filename, content, content.size()};
+void HttpRequest::add_file(const std::string& fieldName, const std::string& filename, const std::string& content, const std::string& perm){
+    uploaded_files[fieldName] = {filename, content, perm, content.size()};
 }
 
 //Clear the http request obj

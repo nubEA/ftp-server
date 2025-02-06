@@ -172,7 +172,7 @@ void Server::handle_request(int sockfd)
             return;
         }
 
-        std::cout << "Received: " << std::string(buffer, bytesReceived) << '\n';
+        std::cout << "Received: " << std::string(buffer, bytesReceived) << "\n\n";
         //Parse the HTTP request
         HttpRequest req = HttpParser::parse(std::string(buffer,bytesReceived));  
         Router router;

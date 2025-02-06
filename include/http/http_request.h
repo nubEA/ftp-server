@@ -6,27 +6,14 @@
 #include <unordered_map>
 
 class HttpRequest {
-private:
+public:
     struct UploadedFile{
         std::string filename{};
         std::string content{};
+        std::string perms{"private"};
         size_t size{};
     };
 
-    std::unordered_map<std::string, UploadedFile> uploaded_files;                    // 
-    std::unordered_map<std::string, std::string> form_fields;                       // Stores normal form fields like name=harshit
-
-    std::string method{};                                                           // Stores the HTTP method (e.g., "GET", "POST")
-    std::string path{};                                                             // Stores the request path (e.g., "/login")
-    std::string http_version{};                                                     // Stores the HTTP version (e.g., "HTTP/1.1")
-    std::string body{};                                                             // Stores the request body
-    std::string token{};                                                            // Stores the token from cookie header
-    std::string boundaryString{};                                                   // Boundary string in case of multipart request
-    std::unordered_map<std::string, std::string> header{};                          // Stores headers as key-value pairs
-    std::string unparsedQuery{};                                                    // Stores the query (everything after "?")
-    std::unordered_map<std::string, std::string> queryParams{};                     // Stores query params as key-value pairs
-
-public:
     HttpRequest() = default;  // Default constructor
 
     // Getters
@@ -42,11 +29,14 @@ public:
     std::unordered_map<std::string,std::string> get_query_map() const;              // Returns map of query params
     std::string get_token_cookie() const;                                           // Returns token 
     std::string get_boundary_string() const;                                        // Returns boundary string
-    std::string get_specific_form_field(const std::string& key) const;              // Returns value for a form-field
+    std::string get_specific_form_field(const std::string& key) const;              // Returns value for a normal non-file form-field
     std::string get_file_name(const std::string& field_name) const;                 // Returns file name from field-name
+    std::string get_file_perms(const std::string& field_name) const;                // Returns if file is meant for public or private download
     std::string get_file_content(const std::string& field_name) const;              // Returns file content
+
     size_t get_file_size(const std::string& field_name) const;                      // Return file size
     std::unordered_map<std::string, UploadedFile> get_all_files() const;            // Returns map of files
+    std::unordered_map<std::string, UploadedFile>& get_all_files_ref();             // Returns map reference of files
 
 
     // Setters
@@ -61,7 +51,7 @@ public:
     void set_token_cookie(const std::string& token);                                // Sets the token
     void set_boundary_string(const std::string& boundary);                          // Sets the boundary string
     void set_specific_form_field(const std::string& key, const std::string& value);  // Sets the form field key,value pairs
-    void add_file(const std::string& fieldName, const std::string& filename, const std::string& content);
+    void add_file(const std::string& fieldName, const std::string& filename, const std::string& content, const std::string& perm = "private");
 
     // Utilities
     void clear();                                                                   // Clears all fields of the HTTP request
@@ -72,6 +62,22 @@ public:
     bool has_boundary_string() const;                                               // Checks if req has boundary string (to check malformed request)
     bool has_form_field(const std::string& key) const;                              // Checks if form_field is present;
     bool has_file(const std::string& field_name) const;                             // Checks if file exists from the map that maps fieldname to files
+
+private:
+    std::unordered_map<std::string, UploadedFile> uploaded_files;                    // 
+    std::unordered_map<std::string, std::string> form_fields;                       // Stores normal form fields like name=harshit
+
+    std::string method{};                                                           // Stores the HTTP method (e.g., "GET", "POST")
+    std::string path{};                                                             // Stores the request path (e.g., "/login")
+    std::string http_version{};                                                     // Stores the HTTP version (e.g., "HTTP/1.1")
+    std::string body{};                                                             // Stores the request body
+    std::string token{};                                                            // Stores the token from cookie header
+    std::string boundaryString{};                                                   // Boundary string in case of multipart request
+    std::unordered_map<std::string, std::string> header{};                          // Stores headers as key-value pairs
+    std::string unparsedQuery{};                                                    // Stores the query (everything after "?")
+    std::unordered_map<std::string, std::string> queryParams{};                     // Stores query params as key-value pairs
+
 };
+
 
 #endif // HTTP_REQUEST_H

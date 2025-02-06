@@ -97,6 +97,7 @@ void HttpParser::parse_multipart_body(const std::string& body, HttpRequest& req)
         size_t content_end = body.find(boundary, pos);
         if(content_end == std::string::npos) content_end = body.length();
         std::string content = body.substr(pos, content_end - pos);
+        content = Util::trim(content);
 
         std::cout << "Content extracted. Content size: " << content.size() << std::endl;
         std::cout << "\nContent: " << content << '\n' << std::endl;
@@ -154,6 +155,13 @@ void HttpParser::parse_multipart_body(const std::string& body, HttpRequest& req)
             {
                 std::cout << "Processing form field: " << name << std::endl;
                 req.set_specific_form_field(name, content);
+                std::string lowerCaseContent = Util::to_lower(content);
+                if(name == "public" && (lowerCaseContent == "on" || lowerCaseContent == "true" || lowerCaseContent == "1"))
+                {
+                    auto file_map = req.get_all_files_ref();
+                    file_map.at("file").perms = "public";      
+                    std::cout << "Set the perms as public: " << file_map.at("file").perms << '\n';
+                }
             }
         }
         // Move position to the next part (content section ends here)
