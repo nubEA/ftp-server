@@ -6,7 +6,7 @@ void PostHomeHandler::post_home_handler(HttpRequest& req, HttpResponse& res, Dat
 
     std::string downloadLink = generate_random_link();
 
-    put_in_db(get_user_id(req.get_token_cookie(),db), file.filename, file.size, downloadLink, file.perms, db);
+    put_in_db(get_user_id(req.get_token_cookie(),db), file, downloadLink, db);
 }
 
 std::string PostHomeHandler::generate_random_link()
@@ -40,24 +40,27 @@ std::string PostHomeHandler::get_user_id(const std::string& token, Database& db)
     return results[0][0];
 }
 
-void PostHomeHandler::put_in_db(const std::string& userId, const std::string& filename, const size_t filesize, 
-                                const std::string& link, const std::string& permission, Database& db) 
+void PostHomeHandler::put_in_db(const std::string& userId, HttpRequest::UploadedFile file, const std::string& link,Database& db) 
 {
     std::cout << "Trying to put file details in db\n";
+
+    //Preparing all necessary params for file insertion in db
     std::string stmtName = "file_insertion";
-
-    // Convert size_t to string
-    std::stringstream stream;
-    stream << filesize;
-    std::string fileSizeString = stream.str();
-
+    std::string filename = file.filename;
+    size_t filesize = file.size;
+    std::string permission = file.perms;
+    std::string isCompressed = "0";
+    std::string filetype = (file.type == HttpRequest::FileType::TEXT) ? "text" : "binary";
+    std::string fileSizeString = std::to_string(filesize);
+    
     // Include permission in the query parameters
-    const char* params[] = {userId.c_str(), filename.c_str(), fileSizeString.c_str(), link.c_str(), "0", permission.c_str()};
+    const char* params[] = {userId.c_str(), filename.c_str(), fileSizeString.c_str(), link.c_str(), isCompressed.c_str(), permission.c_str(), 
+                            filetype.c_str()};
     int paramLen[] = {static_cast<int>(userId.length()), static_cast<int>(filename.length()), 
                       static_cast<int>(fileSizeString.length()), static_cast<int>(link.length()), 
-                      1, static_cast<int>(permission.length())};
-    int paramFormat[] = {0, 0, 0, 0, 0, 0};  // All parameters are text
-    int nParams = 6;
+                      static_cast<int>(isCompressed.length()), static_cast<int>(permission.length()), static_cast<int>(filetype.length())};
+    int paramFormat[] = {0, 0, 0, 0, 0, 0, 0};  // All parameters are text
+    int nParams = 7;
 
     if (db.execute_query(stmtName, params, paramLen, paramFormat, nParams)) {
         std::cout << "File added in db successfully\n";
