@@ -1,5 +1,7 @@
 #include "http_parser.h"
 
+//HANDLE BINARY DATA PARSING 
+
 HttpRequest HttpParser::parse(const std::string& raw_request){
     
     //Split the raw request into header part and body part by splitting it at first occurence of "\r\n\r\n"
@@ -96,11 +98,9 @@ void HttpParser::parse_multipart_body(const std::string& body, HttpRequest& req)
         // Find the next boundary or the end of the body (for the current content)
         size_t content_end = body.find(boundary, pos);
         if(content_end == std::string::npos) content_end = body.length();
-        std::string content = body.substr(pos, content_end - pos);
-        content = Util::trim(content);
+        std::vector<std::uint8_t> content(body.begin()+pos, body.begin()+content_end);
 
         std::cout << "Content extracted. Content size: " << content.size() << std::endl;
-        std::cout << "\nContent: " << content << '\n' << std::endl;
 
         // Process the headers into key-value pairs
         std::stringstream stream(headers);
@@ -112,7 +112,10 @@ void HttpParser::parse_multipart_body(const std::string& body, HttpRequest& req)
             if(colonPos == std::string::npos) continue;     // Skip lines without a colon
             std::string key = line.substr(0, colonPos);
             key = Util::to_lower(key);                      // Normalize header keys to lowercase
-            header_map[key] = line.substr(colonPos + 1);
+            key = Util::trim(key);
+            std::string value = line.substr(colonPos+1);
+            value = Util::trim(value);
+            header_map[key] = value;
 
             std::cout << "Header parsed: " << key << ": " << header_map[key] << std::endl;
         }
@@ -149,13 +152,22 @@ void HttpParser::parse_multipart_body(const std::string& body, HttpRequest& req)
             if(!filename.empty())
             {
                 std::cout << "Processing file upload: " << filename << std::endl;
-                req.add_file(name, filename, content);
+                HttpRequest::FileType type = HttpRequest::FileType::BINARY;
+                if(header_map.count("content-type") && header_map.at("content-type").starts_with("text/")){ 
+                    std::cout << "Printing content since its txt only...\n";
+                    std::cout << "\nContent: ";
+                    for(auto& v : content) std::cout << v;
+                    std::cout << "\n\n";
+                    type = HttpRequest::FileType::TEXT;
+                }
+                std::cout << "Setting the filetype as: " << (int)type << '\n';
+                req.add_file(name, filename, content, type);
             }
             else  // Otherwise, it's a regular form field
             {
                 std::cout << "Processing form field: " << name << std::endl;
-                req.set_specific_form_field(name, content);
-                std::string lowerCaseContent = Util::to_lower(content);
+                req.set_specific_form_field(name, req.as_text(content));
+                std::string lowerCaseContent = Util::to_lower(Util::trim(req.as_text(content)));
                 if(name == "public" && (lowerCaseContent == "on" || lowerCaseContent == "true" || lowerCaseContent == "1"))
                 {
                     auto file_map = req.get_all_files_ref();

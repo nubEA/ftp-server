@@ -90,10 +90,21 @@ std::string HttpRequest::get_file_perms(const std::string& field_name) const{
 }
 
 
-std::string HttpRequest::get_file_content(const std::string& field_name) const {
+std::vector<uint8_t> HttpRequest::get_file_content(const std::string& field_name) const {
     if (has_file(field_name)) return uploaded_files.at(field_name).content;
-    return "";
+    std::vector<uint8_t> cont{};
+    return cont;
 }
+
+std::string HttpRequest::as_text(const std::vector<uint8_t>& content) const{
+    return std::string(content.begin(),content.end());
+}
+
+HttpRequest::FileType HttpRequest::get_file_type(const std::string& field_name) const{
+    if(has_file(field_name)) return uploaded_files.at(field_name).type;
+    else return HttpRequest::FileType::BINARY;
+}
+
 
 size_t HttpRequest::get_file_size(const std::string& field_name) const {
     if (has_file(field_name)) return uploaded_files.at(field_name).size;
@@ -162,8 +173,8 @@ void HttpRequest::set_specific_form_field(const std::string& field_name, const s
     form_fields[field_name] = value;
 }
 
-void HttpRequest::add_file(const std::string& fieldName, const std::string& filename, const std::string& content, const std::string& perm){
-    uploaded_files[fieldName] = {filename, content, perm, content.size()};
+void HttpRequest::add_file(const std::string& fieldName, const std::string& filename, const std::vector<uint8_t>& content, const HttpRequest::FileType type ,const std::string& perm){
+    uploaded_files[fieldName] = {filename, content, perm, content.size(), type};
 }
 
 //Clear the http request obj

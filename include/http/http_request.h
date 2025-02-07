@@ -3,15 +3,22 @@
 
 #include <iostream>
 #include <string>
+#include <cstdint>
 #include <unordered_map>
+#include <vector>
 
 class HttpRequest {
 public:
+    enum class FileType{
+        TEXT, BINARY
+    };
+
     struct UploadedFile{
         std::string filename{};
-        std::string content{};
+        std::vector<std::uint8_t> content{};     //To store binary data and to indicate to the user that content isnt necessarily text content
         std::string perms{"private"};
         size_t size{};
+        FileType type{FileType::BINARY};   // Default type binary
     };
 
     HttpRequest() = default;  // Default constructor
@@ -32,7 +39,9 @@ public:
     std::string get_specific_form_field(const std::string& key) const;              // Returns value for a normal non-file form-field
     std::string get_file_name(const std::string& field_name) const;                 // Returns file name from field-name
     std::string get_file_perms(const std::string& field_name) const;                // Returns if file is meant for public or private download
-    std::string get_file_content(const std::string& field_name) const;              // Returns file content
+    std::vector<std::uint8_t> get_file_content(const std::string& field_name) const;     // Returns file content
+    std::string as_text(const std::vector<std::uint8_t>& content) const;                 // Converts vector of unsigned char to a string
+    FileType get_file_type(const std::string& field_name) const;                    // Returns if the file has binary content or text content
 
     size_t get_file_size(const std::string& field_name) const;                      // Return file size
     std::unordered_map<std::string, UploadedFile> get_all_files() const;            // Returns map of files
@@ -51,7 +60,8 @@ public:
     void set_token_cookie(const std::string& token);                                // Sets the token
     void set_boundary_string(const std::string& boundary);                          // Sets the boundary string
     void set_specific_form_field(const std::string& key, const std::string& value);  // Sets the form field key,value pairs
-    void add_file(const std::string& fieldName, const std::string& filename, const std::string& content, const std::string& perm = "private");
+    void add_file(const std::string& fieldName, const std::string& filename, 
+                  const std::vector<std::uint8_t>& content, const HttpRequest::FileType type ,const std::string& perm = "private");
 
     // Utilities
     void clear();                                                                   // Clears all fields of the HTTP request

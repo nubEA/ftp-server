@@ -3856,6 +3856,8 @@ CMakeFiles/URLShortner.dir/src/http/http_parser.cpp.o: /home/harshit/code/ftp-se
   /usr/include/bits/select.h \
   /usr/include/bits/setjmp.h \
   /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
   /usr/include/bits/stdio_lim.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
@@ -3984,6 +3986,7 @@ CMakeFiles/URLShortner.dir/src/http/http_parser.cpp.o: /home/harshit/code/ftp-se
   /usr/include/c++/14/compare \
   /usr/include/c++/14/concepts \
   /usr/include/c++/14/cstddef \
+  /usr/include/c++/14/cstdint \
   /usr/include/c++/14/cstdio \
   /usr/include/c++/14/cstdlib \
   /usr/include/c++/14/cwchar \
@@ -4042,6 +4045,7 @@ CMakeFiles/URLShortner.dir/src/http/http_parser.cpp.o: /home/harshit/code/ftp-se
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
   /usr/include/sys/cdefs.h \
@@ -4052,7 +4056,8 @@ CMakeFiles/URLShortner.dir/src/http/http_parser.cpp.o: /home/harshit/code/ftp-se
   /usr/include/wchar.h \
   /usr/include/wctype.h \
   /usr/lib/gcc/x86_64-redhat-linux/14/include/stdarg.h \
-  /usr/lib/gcc/x86_64-redhat-linux/14/include/stddef.h
+  /usr/lib/gcc/x86_64-redhat-linux/14/include/stddef.h \
+  /usr/lib/gcc/x86_64-redhat-linux/14/include/stdint.h
 
 CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o: /home/harshit/code/ftp-server/src/http/http_request.cpp \
   /home/harshit/code/ftp-server/include/http/http_request.h \
@@ -4078,6 +4083,8 @@ CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o: /home/harshit/code/ftp-s
   /usr/include/bits/select.h \
   /usr/include/bits/setjmp.h \
   /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
   /usr/include/bits/stdio_lim.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
@@ -4172,12 +4179,15 @@ CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o: /home/harshit/code/ftp-s
   /usr/include/c++/14/bits/requires_hosted.h \
   /usr/include/c++/14/bits/std_abs.h \
   /usr/include/c++/14/bits/stl_algobase.h \
+  /usr/include/c++/14/bits/stl_bvector.h \
   /usr/include/c++/14/bits/stl_construct.h \
   /usr/include/c++/14/bits/stl_function.h \
   /usr/include/c++/14/bits/stl_iterator.h \
   /usr/include/c++/14/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/14/bits/stl_iterator_base_types.h \
   /usr/include/c++/14/bits/stl_pair.h \
+  /usr/include/c++/14/bits/stl_uninitialized.h \
+  /usr/include/c++/14/bits/stl_vector.h \
   /usr/include/c++/14/bits/streambuf.tcc \
   /usr/include/c++/14/bits/streambuf_iterator.h \
   /usr/include/c++/14/bits/string_view.tcc \
@@ -4186,6 +4196,7 @@ CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o: /home/harshit/code/ftp-s
   /usr/include/c++/14/bits/uses_allocator.h \
   /usr/include/c++/14/bits/uses_allocator_args.h \
   /usr/include/c++/14/bits/utility.h \
+  /usr/include/c++/14/bits/vector.tcc \
   /usr/include/c++/14/bits/version.h \
   /usr/include/c++/14/cctype \
   /usr/include/c++/14/cerrno \
@@ -4193,6 +4204,7 @@ CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o: /home/harshit/code/ftp-s
   /usr/include/c++/14/compare \
   /usr/include/c++/14/concepts \
   /usr/include/c++/14/cstddef \
+  /usr/include/c++/14/cstdint \
   /usr/include/c++/14/cstdio \
   /usr/include/c++/14/cstdlib \
   /usr/include/c++/14/cwchar \
@@ -4224,6 +4236,7 @@ CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o: /home/harshit/code/ftp-s
   /usr/include/c++/14/type_traits \
   /usr/include/c++/14/typeinfo \
   /usr/include/c++/14/unordered_map \
+  /usr/include/c++/14/vector \
   /usr/include/c++/14/x86_64-redhat-linux/bits/atomic_word.h \
   /usr/include/c++/14/x86_64-redhat-linux/bits/c++allocator.h \
   /usr/include/c++/14/x86_64-redhat-linux/bits/c++config.h \
@@ -4247,6 +4260,7 @@ CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o: /home/harshit/code/ftp-s
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
   /usr/include/sys/cdefs.h \
@@ -4257,7 +4271,8 @@ CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o: /home/harshit/code/ftp-s
   /usr/include/wchar.h \
   /usr/include/wctype.h \
   /usr/lib/gcc/x86_64-redhat-linux/14/include/stdarg.h \
-  /usr/lib/gcc/x86_64-redhat-linux/14/include/stddef.h
+  /usr/lib/gcc/x86_64-redhat-linux/14/include/stddef.h \
+  /usr/lib/gcc/x86_64-redhat-linux/14/include/stdint.h
 
 CMakeFiles/URLShortner.dir/src/http/http_response.cpp.o: /home/harshit/code/ftp-server/src/http/http_response.cpp \
   /home/harshit/code/ftp-server/include/http/http_response.h \
@@ -5585,6 +5600,8 @@ CMakeFiles/URLShortner.dir/src/utility/util.cpp.o: /home/harshit/code/ftp-server
   /usr/include/bits/select.h \
   /usr/include/bits/setjmp.h \
   /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
   /usr/include/bits/stdio_lim.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
@@ -5718,6 +5735,7 @@ CMakeFiles/URLShortner.dir/src/utility/util.cpp.o: /home/harshit/code/ftp-server
   /usr/include/c++/14/compare \
   /usr/include/c++/14/concepts \
   /usr/include/c++/14/cstddef \
+  /usr/include/c++/14/cstdint \
   /usr/include/c++/14/cstdio \
   /usr/include/c++/14/cstdlib \
   /usr/include/c++/14/ctime \
@@ -5782,6 +5800,7 @@ CMakeFiles/URLShortner.dir/src/utility/util.cpp.o: /home/harshit/code/ftp-server
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
   /usr/include/sys/cdefs.h \
@@ -5792,7 +5811,8 @@ CMakeFiles/URLShortner.dir/src/utility/util.cpp.o: /home/harshit/code/ftp-server
   /usr/include/wchar.h \
   /usr/include/wctype.h \
   /usr/lib/gcc/x86_64-redhat-linux/14/include/stdarg.h \
-  /usr/lib/gcc/x86_64-redhat-linux/14/include/stddef.h
+  /usr/lib/gcc/x86_64-redhat-linux/14/include/stddef.h \
+  /usr/lib/gcc/x86_64-redhat-linux/14/include/stdint.h
 
 
 /home/harshit/code/ftp-server/src/utility/util.cpp:

@@ -6,7 +6,7 @@ void PostHomeHandler::post_home_handler(HttpRequest& req, HttpResponse& res, Dat
 
     std::string downloadLink = generate_random_link();
 
-    put_in_db(get_user_id(req.get_token_cookie(),db), file.filename, file.size, downloadLink, db);
+    put_in_db(get_user_id(req.get_token_cookie(),db), file.filename, file.size, downloadLink, file.perms, db);
 }
 
 std::string PostHomeHandler::generate_random_link()
@@ -40,25 +40,28 @@ std::string PostHomeHandler::get_user_id(const std::string& token, Database& db)
     return results[0][0];
 }
 
-void PostHomeHandler::put_in_db(const std::string& userId, const std::string& filename, const size_t filesize, const std::string& link, Database& db)
+void PostHomeHandler::put_in_db(const std::string& userId, const std::string& filename, const size_t filesize, 
+                                const std::string& link, const std::string& permission, Database& db) 
 {
     std::cout << "Trying to put file details in db\n";
     std::string stmtName = "file_insertion";
 
-    //Converting size_t to std::string
+    // Convert size_t to string
     std::stringstream stream;
     stream << filesize;
     std::string fileSizeString = stream.str();
 
-    const char* params[] = {userId.c_str(),filename.c_str(),fileSizeString.c_str(),link.c_str()};
+    // Include permission in the query parameters
+    const char* params[] = {userId.c_str(), filename.c_str(), fileSizeString.c_str(), link.c_str(), "0", permission.c_str()};
     int paramLen[] = {static_cast<int>(userId.length()), static_cast<int>(filename.length()), 
-                      static_cast<int>(fileSizeString.length()), static_cast<int>(link.length())};
-    int paramFormat[] = {0,0,0,0};
-    int nParams = 4;
-    if(db.execute_query(stmtName,params,paramLen,paramFormat,nParams)){
+                      static_cast<int>(fileSizeString.length()), static_cast<int>(link.length()), 
+                      1, static_cast<int>(permission.length())};
+    int paramFormat[] = {0, 0, 0, 0, 0, 0};  // All parameters are text
+    int nParams = 6;
+
+    if (db.execute_query(stmtName, params, paramLen, paramFormat, nParams)) {
         std::cout << "File added in db successfully\n";
-    }
-    else{
+    } else {
         std::cout << "Some error occurred in inserting file in db\n";
     }
 }
