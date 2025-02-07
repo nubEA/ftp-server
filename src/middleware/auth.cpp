@@ -89,14 +89,6 @@ bool Auth::isExpired(std::string& expiresAt, std::string& token, Database& db) {
     {
         std::cout << "Cookie has expired\n";
         remove_cookie_db_entry(get_user_id(token,db),db);
-        // std::string stmtName = "delete_refresh_token";
-        // const char* params[] = {token.c_str()};
-        // int paramLen[] = {static_cast<int>(token.length())};
-        // int paramFormat[] = {0};
-        // int nParams = 1;
-        // if(db.execute_query(stmtName,params,paramLen,paramFormat,nParams)){
-        //     std::cout << "Deleted Expired cookie\n";
-        // }
     }
 
     return expiration_time < now;
