@@ -17,7 +17,7 @@ std::string body = R"(<!DOCTYPE html>
                             <form method="POST" action="/" enctype="multipart/form-data">
                                 <label for="file-upload">Insert File </label>
                                 <br><br>
-                                <input id="file-upload" type="file" name="file" accept=".txt, .jpg, .png, .pdf, .zip, .mp4" required>
+                                <input id="file-upload" type="file" name="file" accept=".txt, .jpg, .png, .pdf, .zip, .mp3" required>
                                 <br><br>
                                 <input type="checkbox" id="public-checkbox" name="public">
                                 <label for="public-checkbox">Make Public</label>

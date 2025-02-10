@@ -12,13 +12,22 @@
 
 MultipartParser::MultipartParser(const std::string& boundaryString, const std::string& extra, int fd, bool fullBodyReceived)
     : boundary(boundaryString), extraBody(extra.begin(), extra.end()), clientSocketFd(fd), state(State::ParsingHeaders) {
+
     std::cout << "MultipartParser constructor called\n";
     std::vector<unsigned char> chunk = extraBody;
     std::vector<unsigned char> buff(MAX_BUFFER);
     ssize_t bytesReceived{-1};
     HttpRequest multipartBody;
-    std::string FinalBoundary = "--" + boundary + "--";
-    std::string endBoundary = "--" + boundary;
+    std::string FinalBoundary = "\r\n--" + boundary + "--";
+    std::string endBoundary = "\r\n--" + boundary + "\r\n";
+    
+    std::vector<std::string> endBoundaryPerms{};
+    std::vector<std::string> finalBoundaryPerms{};
+    for(int i = 1; i < endBoundary.length(); ++i)
+    {
+        endBoundaryPerms.push_back(endBoundary.substr(i));
+        finalBoundaryPerms.push_back(FinalBoundary.substr(i));
+    }
 
     std::cout << "@@@@@@@@@@@@@@@\n\n";
     for(auto& v : chunk){
@@ -38,14 +47,66 @@ MultipartParser::MultipartParser(const std::string& boundaryString, const std::s
         return;
     }
 
+    bool wait = false;
+
     while ((bytesReceived = recv(clientSocketFd, buff.data(), MAX_BUFFER, 0)) > 0) {
         std::cout << "Received " << bytesReceived << " bytes\n";
         chunk.insert(chunk.end(), buff.begin(), buff.begin() + bytesReceived);
+        
+        auto finalBoundaryIt = std::search(chunk.begin(),chunk.end(),FinalBoundary.begin(),FinalBoundary.end());
+        auto endBoundaryIt = std::search(chunk.begin(),chunk.end(),endBoundary.begin(),endBoundary.end());
 
-        if (!processChunk(chunk, multipartBody, FinalBoundary, endBoundary)) {
-            std::cerr << "Error processing chunk. Closing connection.\n";
-            return;
+        if(endBoundaryIt != chunk.end()){
+            size_t endPos = std::distance(chunk.begin(),endBoundaryIt);
+
+            std::vector<unsigned char> bodyPartChunk;
+            bodyPartChunk.insert(bodyPartChunk.begin(),chunk.begin(),chunk.begin()+endPos);
+            chunk.erase(chunk.begin(),chunk.begin()+endPos+endBoundary.length());
+            if (!processChunk(bodyPartChunk, multipartBody, FinalBoundary, endBoundary)) {
+                std::cerr << "Error processing chunk. Closing connection.\n";
+                return;
+            }
+            state = State::ParsingHeaders;
         }
+        else if(finalBoundaryIt != chunk.end()){
+            size_t finalPos = std::distance(chunk.begin(),finalBoundaryIt);
+
+            std::vector<unsigned char> bodyPartChunk;
+            bodyPartChunk.insert(bodyPartChunk.begin(),chunk.begin(),chunk.begin()+finalPos);
+            chunk.erase(chunk.begin(),chunk.begin()+finalPos+FinalBoundary.length());
+            if (!processChunk(bodyPartChunk, multipartBody, FinalBoundary, endBoundary)) {
+                std::cerr << "Error processing chunk. Closing connection.\n";
+                return;
+            }
+            state = State::Finished;
+        }
+        else{
+            size_t fromBack = std::min(chunk.size(),FinalBoundary.length());
+            std::string lookBack(chunk.end() - fromBack, chunk.end());  
+
+            for(int i = 0; i < endBoundaryPerms.size(); ++i)
+            {
+                std::string str1 = lookBack + endBoundaryPerms[i];
+                std::string str2 = lookBack + finalBoundaryPerms[i];
+                if((str1.find(endBoundary) != std::string::npos) || (str2.find(FinalBoundary) != std::string::npos))
+                {
+                    std::cout << "Going to wait for another receive call....\n";
+                    wait = true;
+                    break;
+                }
+            }
+
+            if(wait){
+                wait = false;
+                continue;
+            }
+
+            if (!processChunk(chunk, multipartBody, FinalBoundary, endBoundary)) {
+                std::cerr << "Error processing chunk. Closing connection.\n";
+                return;
+            }
+        }
+
         if(state == MultipartParser::State::Finished){
             std::cout << "State is Finished, writing to file\n";
             writeToFile(multipartBody, chunk);
@@ -74,7 +135,7 @@ bool MultipartParser::processChunk(std::vector<unsigned char>& chunk, HttpReques
         std::cout << "Body part end found\n";
         size_t bodyPartEndPos = std::distance(chunk.begin(), bodyPartEndIt);
         std::vector<unsigned char> body(chunk.begin(), chunk.begin() + bodyPartEndPos);
-        chunk.erase(chunk.begin(), chunk.begin() + bodyPartEndPos + endBoundary.length() + 2);
+        chunk.erase(chunk.begin(), chunk.begin() + bodyPartEndPos + endBoundary.length());
 
         if (!writeToFile(req, body)) {
             std::cerr << "Error saving file locally. Closing connection.\n";
@@ -154,7 +215,7 @@ bool MultipartParser::writeTextFile(const std::string& tempPath, std::string& co
         return false;
     }
 
-    std::string endingString = "--" + boundary;
+    std::string endingString = "\r\n--" + boundary + "\r\n";
     std::string finalString = "--" + boundary + "--";
     size_t endPos = content.size();
     if (content.find(endingString) != std::string::npos) {
@@ -165,7 +226,7 @@ bool MultipartParser::writeTextFile(const std::string& tempPath, std::string& co
     filestream.write(content.data(), endPos);
 
     if (endPos == content.size()) content.clear();
-    else content.erase(content.begin(), content.begin() + endPos + endingString.size() + 2);
+    else content.erase(content.begin(), content.begin() + endPos + endingString.length());
 
     if (filestream.fail()) {
         std::cerr << "Error writing to file: " << tempPath << "\n";
@@ -208,7 +269,7 @@ bool MultipartParser::writeBinaryFile(const std::string& tempPath, std::vector<u
         return false;
     }
 
-    std::string bodyEnd = "--" + boundary;
+    std::string bodyEnd = "\r\n--" + boundary + "\r\n";
     std::string finalString = "--" + boundary + "--";
 
     auto endPosIt = std::search(content.begin(), content.end(), bodyEnd.begin(), bodyEnd.end());
@@ -222,7 +283,7 @@ bool MultipartParser::writeBinaryFile(const std::string& tempPath, std::vector<u
     filestream.write(reinterpret_cast<char*>(content.data()), endPos);
 
     if (endPos == content.size()) content.clear();
-    else content.erase(content.begin(), content.begin() + endPos + bodyEnd.size() + 2);
+    else content.erase(content.begin(), content.begin() + endPos + bodyEnd.length());
 
     filestream.flush();
     if (filestream.fail()) {
