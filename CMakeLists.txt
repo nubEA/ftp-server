@@ -45,6 +45,7 @@ set(SOURCES
     ${SRC_DIR}/handlers/post_home_handler.cpp
     ${SRC_DIR}/middleware/auth.cpp
     ${SRC_DIR}/handlers/post_logout_handler.cpp
+    ${SRC_DIR}/http/multipart_parser.cpp
 )
 
 # Add the executable

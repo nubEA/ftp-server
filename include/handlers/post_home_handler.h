@@ -22,8 +22,6 @@ public:
     
 private:
     static void store_file_locally(HttpRequest& req, HttpRequest::UploadedFile& file, std::string hashedFileName);
-    static bool write_text_file(const std::string& tempPath, const std::string& finalPath, const std::string& content);
-    static bool write_binary_file(const std::string& tempPath, const std::string& finalPath, const std::vector<std::uint8_t>& content);
     
     static std::string generate_random_link();
     static std::string get_user_id(const std::string& token, Database& db);

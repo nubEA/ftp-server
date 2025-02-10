@@ -31,6 +31,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o.d"
   "CMakeFiles/URLShortner.dir/src/http/http_response.cpp.o"
   "CMakeFiles/URLShortner.dir/src/http/http_response.cpp.o.d"
+  "CMakeFiles/URLShortner.dir/src/http/multipart_parser.cpp.o"
+  "CMakeFiles/URLShortner.dir/src/http/multipart_parser.cpp.o.d"
   "CMakeFiles/URLShortner.dir/src/http/router.cpp.o"
   "CMakeFiles/URLShortner.dir/src/http/router.cpp.o.d"
   "CMakeFiles/URLShortner.dir/src/main.cpp.o"

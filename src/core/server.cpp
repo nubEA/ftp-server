@@ -1,9 +1,7 @@
 #include "server.h"
 #include "thread_pool.h"
 #define BACKLOG 10
-#define MAX_BUFFER 10000
-
-//understand why we should throw exceptions over exit(1);
+#define MAX_BUFFER 65536 //64 KB
 
 static Server* serverInstance = nullptr;
 
@@ -158,34 +156,105 @@ void Server::handle_request(int sockfd)
 
     //lambda function
     auto clientTaskHandler = [this, clientSocketFd] () {
-        char buffer[MAX_BUFFER]{};
-        int bytesReceived{};
-        if((bytesReceived = recv(clientSocketFd, buffer, sizeof(buffer), 0)) == -1){
-            perror("Error receiving\n");
-            close(clientSocketFd);
-            return;                
-        }
-        else if(bytesReceived == 0)
+        std::vector<char> buffer(MAX_BUFFER);
+        std::string raw_request{};
+        bool isMultipart = false;
+        size_t headerEnd = std::string::npos;
+        int bytesReceived{-1};
+        //Getting the headers in chunks (may include some of body too)
+        while((bytesReceived = recv(clientSocketFd, buffer.data(), MAX_BUFFER, 0)) > 0)
         {
-            std::cout << "Client disconnected\n";
+            raw_request.append(buffer.data(),bytesReceived);
+            //If all headers have been received
+            headerEnd = raw_request.find("\r\n\r\n");
+            if(headerEnd != std::string::npos)
+            {
+                break;
+            }
+        }
+
+        if(headerEnd != std::string::npos){
+            std::cout << "\n\n";
+            std::cout << "###\n";
+            std::cout << raw_request << "\n\n\n";
+            std::cout << raw_request.substr(0,headerEnd) << "\n\n";
+            size_t multipartPos = raw_request.find("multipart");
+            isMultipart = (multipartPos != std::string::npos && multipartPos < headerEnd);
+            std::cout << isMultipart << "\n\n";
+        }
+        //Multipart/form data including file so we call the streaming file writer
+        if(isMultipart)
+        {
+            //Parse the headers and some body that may have come
+            std::cout << "Sending the request to multipart parser\n";
+            HttpRequest req = HttpParser::parse(raw_request);
+            std::string ExtraBody = req.get_body();
+            std::string boundaryString = req.get_boundary_string();
+            bool bodyReceived = req.full_body_received();
+            MultipartParser mParser(boundaryString, ExtraBody, clientSocketFd, bodyReceived);
+
+            Router router;
+            HttpResponse res;
+            res.set_status(303, "See Other");
+            res.set_header("Location","/");
+            std::string string_res = res.get_string_response();
+
+            if(send(clientSocketFd,string_res.c_str(),string_res.size(),0) == -1){
+                perror("Error Sending\n");
+            }
             close(clientSocketFd);
-            return;
+            std::cout << "Connection closed\n";
+
+            // HttpParser::streaming_file_writer();
+        }
+        //Normal login/signup/get requests
+        else{
+            
+            HttpRequest req = HttpParser::parse(raw_request);
+            bool bodyReceived = req.full_body_received();
+
+            while(!bodyReceived && (bytesReceived = recv(clientSocketFd, buffer.data(), MAX_BUFFER, 0)) > 0)
+            {
+                std::cout << "Receiving the rest of the body....\n";
+                raw_request.append(buffer.data(),bytesReceived);
+                //Since raw request contains headers too
+                //We use headerEnd pos + 4 (offset for \r\n\r\n) to only store body
+                req.update_body(raw_request.substr(headerEnd+4));
+                bodyReceived = req.full_body_received();
+            }
+            std::cout << "Received full body now\n";
+
+            Router router;
+            //Generate response object
+            HttpResponse res = router.handle_request(req,db);
+            //Get string response
+            std::string string_res = res.get_string_response();
+
+            if(send(clientSocketFd,string_res.c_str(),string_res.size(),0) == -1){
+                perror("Error Sending\n");
+            }
+            close(clientSocketFd);
+            std::cout << "Connection closed\n";
         }
 
-        std::cout << "Received: " << std::string(buffer, bytesReceived) << "\n\n";
-        //Parse the HTTP request
-        HttpRequest req = HttpParser::parse(std::string(buffer,bytesReceived));  
-        Router router;
-        //Generate response object
-        HttpResponse res = router.handle_request(req,db);
-        //Get string response
-        std::string string_res = res.get_string_response();
+        // if(bytesReceived == -1){
+        //     perror("Error receiving\n");
+        //     close(clientSocketFd);
+        //     return;                
+        // }
+        // std::cout << "Received: " << raw_request << "\n\n";
+    
+        // Router router;
+        // //Generate response object
+        // HttpResponse res = router.handle_request(req,db);
+        // //Get string response
+        // std::string string_res = res.get_string_response();
 
-        if(send(clientSocketFd,string_res.c_str(),string_res.size(),0) == -1){
-            perror("Error Sending\n");
-        }
-        close(clientSocketFd);
-        std::cout << "Connection closed\n";
+        // if(send(clientSocketFd,string_res.c_str(),string_res.size(),0) == -1){
+        //     perror("Error Sending\n");
+        // }
+        // close(clientSocketFd);
+        // std::cout << "Connection closed\n";
     };
 
     pool.submit(clientTaskHandler);

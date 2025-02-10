@@ -513,6 +513,30 @@ src/http/http_response.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/http_response.cpp.s
 .PHONY : src/http/http_response.cpp.s
 
+src/http/multipart_parser.o: src/http/multipart_parser.cpp.o
+.PHONY : src/http/multipart_parser.o
+
+# target to build an object file
+src/http/multipart_parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/multipart_parser.cpp.o
+.PHONY : src/http/multipart_parser.cpp.o
+
+src/http/multipart_parser.i: src/http/multipart_parser.cpp.i
+.PHONY : src/http/multipart_parser.i
+
+# target to preprocess a source file
+src/http/multipart_parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/multipart_parser.cpp.i
+.PHONY : src/http/multipart_parser.cpp.i
+
+src/http/multipart_parser.s: src/http/multipart_parser.cpp.s
+.PHONY : src/http/multipart_parser.s
+
+# target to generate assembly for a file
+src/http/multipart_parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/URLShortner.dir/build.make CMakeFiles/URLShortner.dir/src/http/multipart_parser.cpp.s
+.PHONY : src/http/multipart_parser.cpp.s
+
 src/http/router.o: src/http/router.cpp.o
 .PHONY : src/http/router.o
 
@@ -666,6 +690,9 @@ help:
 	@echo "... src/http/http_response.o"
 	@echo "... src/http/http_response.i"
 	@echo "... src/http/http_response.s"
+	@echo "... src/http/multipart_parser.o"
+	@echo "... src/http/multipart_parser.i"
+	@echo "... src/http/multipart_parser.s"
 	@echo "... src/http/router.o"
 	@echo "... src/http/router.i"
 	@echo "... src/http/router.s"

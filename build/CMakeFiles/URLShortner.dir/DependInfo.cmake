@@ -24,6 +24,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/harshit/code/ftp-server/src/http/http_parser.cpp" "CMakeFiles/URLShortner.dir/src/http/http_parser.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/http/http_parser.cpp.o.d"
   "/home/harshit/code/ftp-server/src/http/http_request.cpp" "CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/http/http_request.cpp.o.d"
   "/home/harshit/code/ftp-server/src/http/http_response.cpp" "CMakeFiles/URLShortner.dir/src/http/http_response.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/http/http_response.cpp.o.d"
+  "/home/harshit/code/ftp-server/src/http/multipart_parser.cpp" "CMakeFiles/URLShortner.dir/src/http/multipart_parser.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/http/multipart_parser.cpp.o.d"
   "/home/harshit/code/ftp-server/src/http/router.cpp" "CMakeFiles/URLShortner.dir/src/http/router.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/http/router.cpp.o.d"
   "/home/harshit/code/ftp-server/src/main.cpp" "CMakeFiles/URLShortner.dir/src/main.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/main.cpp.o.d"
   "/home/harshit/code/ftp-server/src/middleware/auth.cpp" "CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o" "gcc" "CMakeFiles/URLShortner.dir/src/middleware/auth.cpp.o.d"

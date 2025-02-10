@@ -2,6 +2,7 @@
 #define SERVER_H
 
 #include <iostream>
+#include <vector>
 #include <string>
 #include <cstring>
 #include <unistd.h>
@@ -20,6 +21,7 @@
 #include "router.h"
 #include "http_parser.h"
 #include "database.h"
+#include "multipart_parser.h"
 
 class Server {
 public:

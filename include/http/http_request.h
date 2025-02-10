@@ -17,9 +17,11 @@ public:
         std::string filename{};
         std::vector<std::uint8_t> content{};     //To store binary data and to indicate to the user that content isnt necessarily text content
         std::string perms{"private"};
+        std::string downloadLink{};
         size_t size{};
         FileType type{FileType::BINARY};   // Default type binary
     };
+    UploadedFile file;                          //Public file object
 
     HttpRequest() = default;  // Default constructor
 
@@ -62,6 +64,7 @@ public:
     void set_specific_form_field(const std::string& key, const std::string& value);  // Sets the form field key,value pairs
     void add_file(const std::string& fieldName, const std::string& filename, 
                   const std::vector<std::uint8_t>& content, const HttpRequest::FileType type ,const std::string& perm = "private");
+    void update_body(const std::string& body);
 
     // Utilities
     void clear();                                                                   // Clears all fields of the HTTP request
@@ -72,6 +75,8 @@ public:
     bool has_boundary_string() const;                                               // Checks if req has boundary string (to check malformed request)
     bool has_form_field(const std::string& key) const;                              // Checks if form_field is present;
     bool has_file(const std::string& field_name) const;                             // Checks if file exists from the map that maps fieldname to files
+    bool full_body_received() const;                                // Checks if the HTTP Request contains the entire body or not
+
 
 private:
     std::unordered_map<std::string, UploadedFile> uploaded_files;                    // 
