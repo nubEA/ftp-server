@@ -11,6 +11,7 @@
 #include <sys/select.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include <filesystem>
 #include <iomanip>
 #include <arpa/inet.h>
 
@@ -22,7 +23,8 @@ public:
         Finished
     };
 
-    MultipartParser(const std::string& boundaryString, const std::string& extra, int fd, bool fullBodyReceived);
+    MultipartParser(const std::string& boundaryString, const std::string& extra, int fd, 
+                                     bool fullBodyReceived, HttpRequest::UploadedFile& file);
 
 private:
     std::string boundary;

@@ -18,7 +18,7 @@ public:
         std::vector<std::uint8_t> content{};     //To store binary data and to indicate to the user that content isnt necessarily text content
         std::string perms{"private"};
         std::string downloadLink{};
-        size_t size{};
+        double size{};
         FileType type{FileType::BINARY};   // Default type binary
     };
     UploadedFile file;                          //Public file object

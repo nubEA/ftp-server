@@ -15,17 +15,16 @@
 #include "http_request.h"
 #include "http_response.h"
 #include "database.h"
+#include "router.h"
 
 class PostHomeHandler {
 public:
     static void post_home_handler(HttpRequest& req, HttpResponse& res, Database& db);
     
 private:
-    static void store_file_locally(HttpRequest& req, HttpRequest::UploadedFile& file, std::string hashedFileName);
-    
-    static std::string generate_random_link();
+    static void handle_redirect(HttpResponse& res, const std::string& location, const std::string& link);
     static std::string get_user_id(const std::string& token, Database& db);
-    static void put_in_db(const std::string& userId, HttpRequest::UploadedFile file, const std::string& link, Database& db);
+    static void put_in_db(const std::string& userId, HttpRequest::UploadedFile file, Database& db);
 };
 
 #endif // POST_HOME_HANDLER_H

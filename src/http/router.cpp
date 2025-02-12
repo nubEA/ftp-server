@@ -9,6 +9,7 @@ HttpResponse Router::handle_request(HttpRequest& req, Database& db){
     else if(req.get_method() == "GET"   && req.get_path().starts_with("/login"))    handle_get_login(req, res, db);
     else if(req.get_method() == "POST"  && req.get_path().starts_with("/login"))    handle_post_login(req, res,db);
     else if(req.get_method() == "POST"  && req.get_path().starts_with("/logout"))   handle_post_logout(req,res,db);
+    else if(req.get_method() == "GET"   && req.get_path().starts_with("/history"))  handle_get_history(req,res,db);
     else if(req.get_method() == "GET"   && req.get_path().starts_with("/"))         handle_get_home(req,res,db);
     else if(req.get_method() == "POST"  && req.get_path().starts_with("/"))         handle_post_home(req,res,db);
     else handle_get_home(req,res,db);
@@ -59,19 +60,26 @@ void Router::handle_get_home(HttpRequest& req, HttpResponse& res, Database& db)
 void Router::handle_post_home(HttpRequest& req, HttpResponse& res, Database& db){
     std::cout << "Checking authentication\n";
     if(!Auth::handle_authentication(req,res,db)) return;
-    // std::cout << "Delegating the request to POST home handler\n";
-    // PostHomeHandler::post_home_handler(req,res,db);
-    handle_redirect(res,"/");
+    std::cout << "Delegating the request to POST home handler\n";
+    PostHomeHandler::post_home_handler(req,res,db);
 }
 
 void Router::handle_post_logout(HttpRequest& req, HttpResponse& res, Database& db)
 {
     std::cout << "Checking Authentication\n";
     if(!Auth::handle_authentication(req,res,db)) return;
-    std::cout << "Delegrating the request to POST logout handler\n";
+    std::cout << "Delegating the request to POST logout handler\n";
     PostLogoutHandler::post_logout_handler(req,res,db);
     handle_redirect(res,"/login");
 }
+
+void Router::handle_get_history(HttpRequest& req, HttpResponse& res, Database& db){
+    std::cout << "Checking Authentication\n";
+    if(!Auth::handle_authentication(req,res,db)) return;
+    std::cout << "Delegating the request to GET history handler\n";
+    GetHistoryHandler::get_history_handler(req,res,db);
+}
+
 
 void Router::handle_redirect(HttpResponse& res, const std::string& location)
 {

@@ -10,7 +10,7 @@
 
 #define MAX_BUFFER 64 * 1024
 
-MultipartParser::MultipartParser(const std::string& boundaryString, const std::string& extra, int fd, bool fullBodyReceived)
+MultipartParser::MultipartParser(const std::string& boundaryString, const std::string& extra, int fd, bool fullBodyReceived, HttpRequest::UploadedFile& file)
     : boundary(boundaryString), extraBody(extra.begin(), extra.end()), clientSocketFd(fd), state(State::ParsingHeaders) {
 
     std::cout << "MultipartParser constructor called\n";
@@ -48,7 +48,7 @@ MultipartParser::MultipartParser(const std::string& boundaryString, const std::s
     }
 
     bool wait = false;
-
+    
     while ((bytesReceived = recv(clientSocketFd, buff.data(), MAX_BUFFER, 0)) > 0) {
         std::cout << "Received " << bytesReceived << " bytes\n";
         chunk.insert(chunk.end(), buff.begin(), buff.begin() + bytesReceived);
@@ -83,7 +83,7 @@ MultipartParser::MultipartParser(const std::string& boundaryString, const std::s
         else{
             size_t fromBack = std::min(chunk.size(),FinalBoundary.length());
             std::string lookBack(chunk.end() - fromBack, chunk.end());  
-
+    
             for(int i = 0; i < endBoundaryPerms.size(); ++i)
             {
                 std::string str1 = lookBack + endBoundaryPerms[i];
@@ -119,6 +119,9 @@ MultipartParser::MultipartParser(const std::string& boundaryString, const std::s
         close(clientSocketFd);
         return;
     }
+
+    std::cout << "Filling in the file struct now to pass on to the router\n";
+    file = multipartBody.file;
 }
 
 bool MultipartParser::processChunk(std::vector<unsigned char>& chunk, HttpRequest& req, const std::string& finalBoundary, const std::string& endBoundary) {
@@ -157,6 +160,7 @@ bool MultipartParser::processChunk(std::vector<unsigned char>& chunk, HttpReques
         std::string entireHeader(chunk.begin(), chunk.begin() + headerEndPos);
         chunk.erase(chunk.begin(), chunk.begin() + headerEndPos + 4);
         processHeaders(entireHeader, req);
+        if(state == State::Finished) return true;
     }
 
     if (state == State::WritingBody) {
@@ -171,11 +175,15 @@ bool MultipartParser::processChunk(std::vector<unsigned char>& chunk, HttpReques
 
 bool MultipartParser::writeToFile(HttpRequest& req, std::vector<unsigned char>& chunk) {
     std::cout << "Writing to file\n";
-    std::string hashedFileName = "/home/harshit/code/ftp-server/uploads/" + req.file.downloadLink;
+    std::string hashedFileName = "/home/harshit/code/http-server/uploads/" + req.file.downloadLink;
     std::string tempFile = hashedFileName + ".tmp";
 
     if (state == MultipartParser::State::Finished) {
         std::cout << "Renaming temp file to final file\n";
+
+        double fileSizeMB = static_cast<double>(std::filesystem::file_size(tempFile)) / (1024 * 1024);
+        req.file.size = fileSizeMB;
+
         if (std::rename(tempFile.c_str(), hashedFileName.c_str()) != 0) {
             std::cerr << "Error renaming temp file to final file\n";
             std::remove(tempFile.c_str());
@@ -185,79 +193,13 @@ bool MultipartParser::writeToFile(HttpRequest& req, std::vector<unsigned char>& 
         return true;
     }
 
-    if (req.file.type == HttpRequest::FileType::TEXT) {
-        std::cout << "Writing text file\n";
-        std::string content = req.as_text(chunk);
-        if (!writeTextFile(tempFile, content)) {
-            std::cerr << "Text file writing failed.\n";
-            std::remove(tempFile.c_str());
-            return false;
-        }
-        chunk.clear();
-        chunk.insert(chunk.begin(),content.begin(),content.end());
-    } else {
-        std::cout << "Writing binary file\n";
-        if (!writeBinaryFile(tempFile, chunk)) {
-            std::cerr << "Binary file writing failed.\n";
-            std::remove(tempFile.c_str());
-            return false;
-        }
-    }
-
-    return true;
-}
-
-bool MultipartParser::writeTextFile(const std::string& tempPath, std::string& content) {
-    std::cout << "Writing text content to file: " << tempPath << "\n";
-    std::ofstream filestream(tempPath, std::ios::out | std::ios::app);
-    if (!filestream.is_open()) {
-        std::cerr << "Error opening text file: " << tempPath << "\n";
+    std::cout << "Writing binary file\n";
+    if (!writeBinaryFile(tempFile, chunk)) {
+        std::cerr << "Binary file writing failed.\n";
+        std::remove(tempFile.c_str());
         return false;
     }
 
-    std::string endingString = "\r\n--" + boundary + "\r\n";
-    std::string finalString = "--" + boundary + "--";
-    size_t endPos = content.size();
-    if (content.find(endingString) != std::string::npos) {
-        endPos = content.find(endingString);
-        if(content.find(finalString) != std::string::npos) state = MultipartParser::State::Finished;
-    }
-
-    filestream.write(content.data(), endPos);
-
-    if (endPos == content.size()) content.clear();
-    else content.erase(content.begin(), content.begin() + endPos + endingString.length());
-
-    if (filestream.fail()) {
-        std::cerr << "Error writing to file: " << tempPath << "\n";
-        filestream.close();
-        return false;
-    }
-
-    filestream.flush();
-    if (filestream.fail()) {
-        std::cerr << "Error flushing the file: " << tempPath << "\n";
-        filestream.close();
-        return false;
-    }
-
-    int fd = open(tempPath.c_str(), O_RDWR);
-    if (fd == -1) {
-        std::cerr << "Error opening file descriptor for syncing: " << tempPath << "\n";
-        filestream.close();
-        return false;
-    }
-
-    if (fsync(fd) == -1) {
-        std::cerr << "Error syncing file to disk: " << tempPath << "\n";
-        filestream.close();
-        close(fd);
-        return false;
-    }
-
-    close(fd);
-    filestream.close();
-    std::cout << "Closed temp file after writing content\n";
     return true;
 }
 
@@ -365,8 +307,9 @@ void MultipartParser::processHeaders(const std::string& headers, HttpRequest& re
             req.file.downloadLink = generateRandomLink();
             state = State::WritingBody;
         } else if (value.find("public") != std::string::npos) {
+            std::cout << "##################Found public header!####################\n";
             req.file.perms = "public";
-            state = State::ParsingHeaders;
+            state = State::Finished;
         }
     }
 }

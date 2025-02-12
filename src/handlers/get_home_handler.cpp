@@ -4,7 +4,13 @@ void GetHomeHandler::get_home_handler(HttpRequest& req, HttpResponse& res, Datab
     res.set_status(200,"OK");
     res.set_header("Content-Type","text/html");         //Descibe content as html
     res.set_header("Cache-Control","no-store");         //Prevent caching
-  
+
+    std::string linkQueryParam{};
+    if(req.has_specific_query_param("link"))
+    {
+        linkQueryParam = req.get_query_param("link");
+    }
+
 std::string body = R"(<!DOCTYPE html>
                         <html lang="en">
                         <head>
@@ -13,8 +19,11 @@ std::string body = R"(<!DOCTYPE html>
                             <title>File Transfer</title>
                         </head>
                         <body>
-                            <h1>File Transfer!!</h1>
-                            <form method="POST" action="/" enctype="multipart/form-data">
+                            <h1>File Transfer!!</h1>)";
+
+if(!linkQueryParam.empty()) body += R"(<p style="color: green;">File uploaded successfully: <a href=")" + linkQueryParam + R"(">link</a> </p>)";
+
+body +=                         R"(<form method="POST" action="/" enctype="multipart/form-data">
                                 <label for="file-upload">Insert File </label>
                                 <br><br>
                                 <input id="file-upload" type="file" name="file" accept=".txt, .jpg, .png, .pdf, .zip, .mp3" required>
@@ -25,6 +34,7 @@ std::string body = R"(<!DOCTYPE html>
                                 <button type="submit" value="upload">Upload File</button>
                             </form>
                             <br><br>
+                            <p><a href="/history">Show History</a></p>
                             <form method="POST" action="/logout">
                                 <button type="submit" value="logout">Log Out</button>
                             </form>
