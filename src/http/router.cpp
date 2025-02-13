@@ -1,6 +1,6 @@
 #include "router.h"
 
-HttpResponse Router::handle_request(HttpRequest& req, Database& db){
+HttpResponse Router::handle_request(HttpRequest& req, Database& db, int clientSocketFd){
     HttpResponse res;
     
     //Starts with so that if the path as query parameters it still goes to the correct handler
@@ -10,6 +10,7 @@ HttpResponse Router::handle_request(HttpRequest& req, Database& db){
     else if(req.get_method() == "POST"  && req.get_path().starts_with("/login"))    handle_post_login(req, res,db);
     else if(req.get_method() == "POST"  && req.get_path().starts_with("/logout"))   handle_post_logout(req,res,db);
     else if(req.get_method() == "GET"   && req.get_path().starts_with("/history"))  handle_get_history(req,res,db);
+    else if(req.get_method() == "GET"   && req.get_path().starts_with("/download")) handle_get_download(req,res,db,clientSocketFd);
     else if(req.get_method() == "GET"   && req.get_path().starts_with("/"))         handle_get_home(req,res,db);
     else if(req.get_method() == "POST"  && req.get_path().starts_with("/"))         handle_post_home(req,res,db);
     else handle_get_home(req,res,db);
@@ -78,6 +79,11 @@ void Router::handle_get_history(HttpRequest& req, HttpResponse& res, Database& d
     if(!Auth::handle_authentication(req,res,db)) return;
     std::cout << "Delegating the request to GET history handler\n";
     GetHistoryHandler::get_history_handler(req,res,db);
+}
+
+void Router::handle_get_download(HttpRequest& req, HttpResponse& res, Database& db, int fd){
+    std::cout << "Delegating the request to GET download handler\n";
+    GetDownloadHandler::get_download_handler(req,res,db,fd);   
 }
 
 

@@ -62,6 +62,10 @@ void HttpResponse::set_body(const std::string& content)
     std::cout << "Successfully set the body for the HTTP Response\n";
 }
 
+std::string HttpResponse::get_body(){
+    return body;
+}
+
 std::string HttpResponse::get_string_response() const
 {
     std::string response{};

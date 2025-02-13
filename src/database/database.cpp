@@ -36,7 +36,7 @@ void Database::prepare_queries() {
 
         // File-related queries
         {"file_insertion", "INSERT INTO files (user_id, filename, file_size, download_link, is_compressed, permission, filetype) VALUES ($1, $2, $3, $4, $5, $6, $7);", 7},
-        {"file_retrieval", "SELECT id, filename, file_size, upload_timestamp, download_link, is_compressed, permission, filetype FROM files WHERE download_link = $1;", 1},
+        {"file_retrieval", "SELECT user_id, filename, file_size, upload_timestamp, download_link, is_compressed, permission, filetype FROM files WHERE download_link = $1;", 1},
         {"file_retrieval_by_id", "SELECT id, filename, file_size, upload_timestamp, download_link, is_compressed, permission, filetype FROM files WHERE user_id = $1;", 1},
         {"file_compression", "UPDATE files SET is_compressed = $1 WHERE id = $2;", 2},
         {"file_deletion", "DELETE FROM files WHERE id = $1;", 1},

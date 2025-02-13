@@ -1,5 +1,5 @@
 #include "server.h"
-#include "thread_pool.h"
+
 #define BACKLOG 10
 #define MAX_BUFFER 65536 //64 KB
 
@@ -18,10 +18,11 @@ void signalHandler(int signum)
     }
 }
 
-Server::Server(char* port) : pool(4), connInfo("host=localhost dbname=file_server_db user=file_server_user password=password"), 
-                             connPool(5,connInfo,5000), db(connPool)
+Server::Server(char* port): 
+pool(4),
+connPool(5, std::string(std::getenv("DB_CONNECTION_STRING") ? std::getenv("DB_CONNECTION_STRING") : throw std::runtime_error("DB_CONNECTION_STRING not set")), 5000),
+db(connPool)
 {
-
     set_up_signal_handler();
 
     int sockfd = create_bind_socket(port);
@@ -210,11 +211,15 @@ void Server::handle_request(int sockfd)
         }
 
         Router router;
-        HttpResponse res = router.handle_request(req,db);
-        std::string string_res = res.get_string_response();
-        if(send(clientSocketFd,string_res.c_str(),string_res.size(),0) == -1){
-            perror("Error sencding response\n");
+        HttpResponse res = router.handle_request(req,db,clientSocketFd);
+        
+        if(!req.get_path().starts_with("download/")){
+            std::string string_res = res.get_string_response();
+            if(send(clientSocketFd,string_res.c_str(),string_res.size(),0) == -1){
+                perror("Error sending response\n");
+            }
         }
+
         close(clientSocketFd);
         std::cout << "Connection Closed\n";
     };

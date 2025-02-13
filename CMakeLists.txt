@@ -47,6 +47,7 @@ set(SOURCES
     ${SRC_DIR}/handlers/post_logout_handler.cpp
     ${SRC_DIR}/http/multipart_parser.cpp
     ${SRC_DIR}/handlers/get_history_handler.cpp
+    ${SRC_DIR}/handlers/get_download_handler.cpp
 )
 
 # Add the executable

@@ -1,109 +1,39 @@
 #ifndef CONNECTION_POOL_H
 #define CONNECTION_POOL_H
 
-#include <queue>
-#include <mutex>
-#include <condition_variable>
-#include <memory>
-#include <libpq-fe.h>
-#include <chrono>
-#include <iostream>
+#include <queue>               // For std::queue (to store available connections)
+#include <mutex>               // For std::mutex (to protect shared resources)
+#include <condition_variable>  // For std::condition_variable (to notify threads waiting for connections)
+#include <memory>              // For std::unique_ptr (to manage connection objects)
+#include <libpq-fe.h>          // For PostgreSQL connection functions
+#include <chrono>              // For std::chrono (to handle timeouts)
+#include <iostream>            // For std::cout, std::cerr (for logging and debugging)
 
-/**
- * @class ConnectionPool
- * @brief Manages a pool of database connections to a PostgreSQL database.
- *
- * The ConnectionPool class provides a thread-safe mechanism for managing a pool of
- * database connections. It ensures that connections are reused efficiently and handles
- * connection timeouts and invalid connections gracefully.
- */
 class ConnectionPool {
 public:
-    /**
-     * @brief Custom deleter function for PGconn objects.
-     *
-     * This function ensures that PGconn objects are properly cleaned up using PQfinish.
-     */
-    struct Deleter {
+    struct Deleter {           // Custom deleter for PGconn objects
         void operator()(PGconn* conn) {
-            if (conn) PQfinish(conn);
+            if (conn) PQfinish(conn);  // Properly clean up PGconn objects
         }
     };
 
-    /**
-     * @brief Constructs a ConnectionPool with the specified number of connections and timeout duration.
-     * @param poolSize The number of connections in the pool.
-     * @param connInfo The connection information string for the PostgreSQL database.
-     * @param timeout The timeout duration in milliseconds for waiting for a connection.
-     */
-    ConnectionPool(size_t poolSize, const std::string& connInfo, int timeout);
+    ConnectionPool(size_t poolSize, const std::string& connInfo, int timeout);  // Constructor with pool size, connection info, and timeout
+    ~ConnectionPool();        // Destructor to close all connections
 
-    /**
-     * @brief Destructs the ConnectionPool and closes all connections.
-     *
-     * Ensures that all database connections are properly closed when the ConnectionPool
-     * object is destroyed.
-     */
-    ~ConnectionPool();
-
-    /**
-     * @brief Gets a connection from the pool.
-     * @return A unique pointer to a PGconn object.
-     * @throw std::runtime_error if a connection cannot be obtained within the timeout duration.
-     *
-     * This function is called by threads to obtain a database connection from the pool.
-     * If no connections are available within the specified timeout duration, a runtime
-     * error is thrown.
-     */
-    std::unique_ptr<PGconn, Deleter> get_connection();
-
-    /**
-     * @brief Returns a connection to the pool.
-     * @param conn A unique pointer to a PGconn object.
-     *
-     * This function is called by threads to return a database connection to the pool
-     * after use. The connection is checked for validity before being returned to the pool.
-     */
-    void return_connection(std::unique_ptr<PGconn, Deleter> conn);
-
-        /**
-     * @brief Checks the status of a PostgreSQL connection.
-     * @param conn A reference to a unique_ptr holding the PGconn object.
-     * @return True if the connection is valid, false otherwise.
-     *
-     * This helper function checks the status of a PostgreSQL connection using PQstatus.
-     */
-    static bool check_pq_status(const std::unique_ptr<PGconn, Deleter>& conn);
-
-    //Returns pool size so that we can use this to prepare statements for each connection in the pool
-    size_t get_pool_size();
-
+    std::unique_ptr<PGconn, Deleter> get_connection();  // Get a connection from the pool
+    void return_connection(std::unique_ptr<PGconn, Deleter> conn);  // Return a connection to the pool
+    static bool check_pq_status(const std::unique_ptr<PGconn, Deleter>& conn);  // Check if a connection is valid
+    size_t get_pool_size();    // Get the size of the connection pool
 
 private:
-    std::queue<std::unique_ptr<PGconn, Deleter>> availableConnections;  ///< The pool of available database connections.
-    std::mutex poolMutex;                                              ///< Mutex to ensure thread-safe access to the pool.
-    std::condition_variable poolCV;                                    ///< Condition variable to notify threads waiting for a connection.
-    size_t poolSize;                                                   ///< The size of the connection pool.
-    std::string connInfo;                                              ///< The connection information string for the PostgreSQL database.
-    std::chrono::milliseconds timeoutDuration;                         ///< The timeout duration for waiting for a connection.
+    std::queue<std::unique_ptr<PGconn, Deleter>> availableConnections;  // Queue of available connections
+    std::mutex poolMutex;      // Mutex for thread-safe access to the pool
+    std::condition_variable poolCV;  // Condition variable for connection availability
+    size_t poolSize;           // Size of the connection pool
+    std::string connInfo;      // Connection info string for PostgreSQL
+    std::chrono::milliseconds timeoutDuration;  // Timeout duration for waiting
 
-
-    /**
-     * @brief Creates a new PostgreSQL connection.
-     * @return A unique pointer to a PGconn object.
-     *
-     * This function creates a new PostgreSQL connection and checks its validity.
-     * If the connection is invalid, it returns a nullptr.
-     */
-    std::unique_ptr<PGconn, Deleter> make_new_connection();
-
-    /**
-     * @brief Initializes the connection pool.
-     *
-     * This function initializes the connection pool by creating the specified number
-     * of database connections and adding them to the pool.
-     */
-    void initializePool();
+    std::unique_ptr<PGconn, Deleter> make_new_connection();  // Create a new PostgreSQL connection
+    void initializePool();     // Initialize the connection pool with connections
 };
-
 #endif // CONNECTION_POOL_H
