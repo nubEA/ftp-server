@@ -3,8 +3,8 @@
 A multithreaded C++ backend for file uploads, downloads, and authentication using native sockets and PostgreSQL.
 
 ## 🔥 Features
-- ✅ **User Authentication** – Login, signup, and JWT-based sessions.
-- 📂 **File Upload & Download** – Public/private access, unique download links, compressed downloads.
+- ✅ **User Authentication** – Login, signup.
+- 📂 **File Upload & Download** – Public/private access, unique download links.
 - 🌐 **HTTP Server** – Custom request parsing, `multipart/form-data` support.
 - ⚡ **Multithreading** – Efficient client handling.
 
